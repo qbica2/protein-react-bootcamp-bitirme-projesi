@@ -1,23 +1,23 @@
 import React from "react";
 import LoginRegisterLayout from "../components/LoginRegisterLayout";
 
-function Login() {
+function Register() {
 	return (
 		<LoginRegisterLayout>
 			<div>
-				<h1>Giriş Yap</h1> 
-				<p>Fırsatlardan yararlanmak için giriş yap!</p>
+				<h1>Üye Ol</h1> 
+				<p>Fırsatlardan yararlanmak için üye ol!</p>
 			</div>
 			<form>
 				<label>Email</label>
 				<input type="email" placeholder="Email@example.com" />
 				<label>Şifre</label>
 				<input type="password" />
-				<button>Giriş</button>
+				<button>Üye Ol</button>
 			</form>
-			<span>Hesabın yok mu ? <a>Üye Ol</a></span>
+			<span>Hesabın var mı ? <a>Giriş Yap</a></span>
 		</LoginRegisterLayout>
 	);
 }
 
-export default Login;
+export default Register;

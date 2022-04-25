@@ -35,7 +35,7 @@ function logo({ width, height }) {
 	);
 }
 
-logo.PropTypes = {
+logo.propTypes = {
 	width: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 };

@@ -1,0 +1,86 @@
+.layoutContainer{
+    display: flex;
+    .leftSide{
+        width: 835px;
+        height: 100vh;
+        background-image: url(../constants/images/login.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center center;
+    }
+    .rightSide{
+        width: 1085px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #FBFBFB ;
+
+        .form{
+            width: 569px;
+            height: 554px;
+            background-color: #fff;
+            box-shadow: 0px 3px 12px #1E36480A;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            h1{
+                font-size: 43px;
+                font-weight: bold;
+                letter-spacing: 0;
+                color: #525252;
+                text-align: center;
+            }
+            p{
+                font-size: 20px;
+                color: #525252;
+                text-align: center;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                label{
+                    font-size: 20px;
+                    letter-spacing: 0px;
+                    color: #525252;
+                }
+                input{
+                    width: 389px;
+                    height: 45px;
+                    background-color: #F4F4F4 ;
+                    border-radius: 8px;
+                    padding-left: 15px;
+                    border: none;
+                    font-size: 16px;
+                    color: #99A0A7;
+                    margin-bottom: 20px;
+                    &:focus{
+                        border: 1px solid #4B9CE2;
+                        background: #F0F8FF;
+                    }
+                }
+                button{
+                    margin-top: 20px;
+                    width: 389px;
+                    height: 45px;
+                    background: #4B9CE2 ;
+                    border-radius: 8px;
+                    font-weight: bold;
+                    font-size: 24px;
+                    color: #fff;
+                    letter-spacing: 0;
+                }
+            }
+            span{
+                letter-spacing:0px;
+                color: #525252;
+                font-size: 20px;
+                a{
+                    color: #4B9CE2;
+                }
+            }
+        }
+    }
+}
