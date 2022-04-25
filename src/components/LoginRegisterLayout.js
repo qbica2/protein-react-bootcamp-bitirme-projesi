@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-
+import { ToastContainer } from "react-toastify";
 import Logo from "../constants/Logo";
 import style from "../styles/loginRegisterLayout.module.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginRegisterLayout( {children} ) {
 	return (
@@ -15,6 +16,7 @@ function LoginRegisterLayout( {children} ) {
 				<div className={style.form}>
 					{children}
 				</div>
+				<ToastContainer />
 			</div>
 		</div>
 	);
