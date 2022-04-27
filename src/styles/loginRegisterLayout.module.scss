@@ -71,6 +71,11 @@
                     font-size: 24px;
                     color: #fff;
                     letter-spacing: 0;
+                    cursor: pointer;
+                    &:disabled{
+                        cursor: default;
+                        opacity: 0.6;
+                    }
                 }
             }
             span{
@@ -83,4 +88,7 @@
             }
         }
     }
+}
+.error{
+    border: 2px solid #EE6356 !important;
 }

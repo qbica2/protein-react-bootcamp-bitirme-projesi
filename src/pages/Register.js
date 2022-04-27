@@ -1,28 +1,47 @@
-import React from "react";
+import React, { useContext,useEffect } from "react";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import LoginRegisterLayout from "../components/LoginRegisterLayout";
 import Validations from "../constants/validation";
-
+import AuthContext from "../contexts/AuthContext";
+import style from "../styles/loginRegisterLayout.module.scss";
 
 function Register() {
 
-	// eslint-disable-next-line no-unused-vars
+	const { registerUser,registerLoading,auth } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		console.log("Register useEffect");
+		if(auth.isAuthenticated) {
+			navigate("/" );
+		}
+	},[]);
+
 	const {handleSubmit,handleChange,handleBlur,values,errors,touched} = useFormik({
 		initialValues: {
 			email: "",
 			password: ""
 		},
 		validationSchema: Validations,
-		onSubmit: () => {
-			console.log(values);
-			toast.success("Kayıt işlemi başarılı");
+		onSubmit: async () => {
+			// console.log(values);
+			await registerUser(values.email, values.password);
+			navigate("/");
 		}
 	});
-
-
 	
+	useEffect(() => {
+		if(touched.email && errors.email) {
+			toast.error(errors.email);
+		}
+		if(touched.password && errors.password) {
+			toast.error(errors.password);
+		}
+	},[errors,touched]);
+
 	return (
 		<LoginRegisterLayout>
 			<div>
@@ -32,6 +51,7 @@ function Register() {
 			<form>
 				<label>Email</label>
 				<input 
+					className={touched.email && errors.email ? `${style.error}` : ""}
 					name="email" 
 					type="email" 
 					placeholder="Email@example.com" 
@@ -41,13 +61,14 @@ function Register() {
 				/>
 				<label>Şifre</label>
 				<input 
+					className={touched.password && errors.password ? `${style.error}` : ""}
 					name="password" 
 					type="password" 
 					onChange={handleChange}
 					value={values.password}
 					onBlur={handleBlur}
 				/>
-				<button type="submit" onClick={handleSubmit}>Üye Ol</button>
+				<button type="submit" onClick={handleSubmit} disabled={registerLoading}>Üye Ol</button>
 			</form>
 			<span>Hesabın var mı ? <a>Giriş Yap</a></span>
 		</LoginRegisterLayout>
