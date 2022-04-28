@@ -1,0 +1,18 @@
+.categories{
+	margin-top: 30px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	span{
+		padding-bottom: 10px;
+		color: #525252;
+		font-weight: 600;
+		font-size: 24px;
+		transition: all 500ms ease-in-out;
+		cursor: pointer;
+	}
+}
+.selected{
+	color: #4B9CE2 !important;
+	border-bottom: 2px solid #4B9CE2 !important;
+}

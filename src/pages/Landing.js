@@ -5,8 +5,12 @@ import style from "../styles/landing.module.scss";
 import Logo from "../constants/Logo";
 import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
+import Categories from "../components/Categories";
+
+
 
 function Landing() {
+
 	// eslint-disable-next-line no-unused-vars
 	const navigate = useNavigate();
 	return (
@@ -24,9 +28,7 @@ function Landing() {
 			</nav>
 			<div className={style.container}>
 				<div className={style.banner}></div>
-				<div className={style.categories}>
-					
-				</div>
+				<Categories/>
 			</div>
 		</div>
 	);

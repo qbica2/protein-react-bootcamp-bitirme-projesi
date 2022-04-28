@@ -7,4 +7,5 @@ export default axios.create({baseURL});
 export const requests = {
 	register: "/auth/local/register",
 	login: "/auth/local",
+	categories: "/categories",
 };
