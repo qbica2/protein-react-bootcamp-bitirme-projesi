@@ -23,6 +23,10 @@ function Landing() {
 				</div>
 			</nav>
 			<div className={style.container}>
+				<div className={style.banner}></div>
+				<div className={style.categories}>
+					
+				</div>
 			</div>
 		</div>
 	);
