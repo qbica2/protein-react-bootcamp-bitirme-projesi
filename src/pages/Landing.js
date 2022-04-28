@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import style from "../styles/landing.module.scss";
 import Logo from "../constants/Logo";
 import AddIcon from "../constants/icons/AddIcon";
+import AvatarIcon from "../constants/icons/AvatarIcon";
 
 function Landing() {
 	// eslint-disable-next-line no-unused-vars
@@ -17,7 +18,7 @@ function Landing() {
 					</div>
 					<div className={style.links}>
 						<a> <AddIcon width={13} height={13} color="#4B9CE2"/><span>Ürün Ekle</span></a>
-						<a>Hesabım</a>
+						<a> <AvatarIcon width={13} height={13} color="#4B9CE2"/> <span>Hesabım</span></a>
 					</div>
 				</div>
 			</nav>
