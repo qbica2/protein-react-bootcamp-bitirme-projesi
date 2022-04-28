@@ -3,7 +3,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import Logo from "../constants/Logo";
 import style from "../styles/loginRegisterLayout.module.scss";
-import "react-toastify/dist/ReactToastify.css";
+import "../styles/toast.scss";
 
 function LoginRegisterLayout( {children} ) {
 	return (
@@ -16,7 +16,7 @@ function LoginRegisterLayout( {children} ) {
 				<div className={style.form}>
 					{children}
 				</div>
-				<ToastContainer />
+				<ToastContainer hideProgressBar={true} autoClose={4000} pauseOnHover={false} closeOnClick closeButton={false} theme="colored" />
 			</div>
 		</div>
 	);

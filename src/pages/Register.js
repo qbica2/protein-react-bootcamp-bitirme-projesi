@@ -27,12 +27,14 @@ function Register() {
 		},
 		validationSchema: Validations,
 		onSubmit: async () => {
-			// console.log(values);
-			await registerUser(values.email, values.password);
-			navigate("/");
+			const isAuth = await registerUser(values.email, values.password);
+			console.log(isAuth);
+			if(isAuth) {
+				navigate("/");
+			}	
 		}
 	});
-	
+
 	useEffect(() => {
 		if(touched.email && errors.email) {
 			toast.error(errors.email);
