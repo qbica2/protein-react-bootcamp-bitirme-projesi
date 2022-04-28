@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext,useState } from "react";
 import { toast } from "react-toastify";
-import { register } from "../services/authenticationService";
+import { register, login } from "../services/authenticationService";
 
 
 
@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
 	
 
 	const [registerLoading, setRegisterLoading] = useState(false);
+	const [loginLoading, setLoginLoading] = useState(false);
 	const [auth, setAuth] = useState({
 		isAuthenticated: false,
 		user: null,
@@ -69,11 +70,63 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
+	const loginUser = async (email, password) => {
+		
+		setLoginLoading(true);
+		const response = await login(email, password);
+		console.log("loginUser response", response);
+
+		if (response.status === 200) {
+
+			toast.success("Giriş işlemi başarılı");
+
+			console.log("jwt", response.data.jwt);
+
+			document.cookie = ` Auth_Token=${response.data.jwt}; `;
+
+			setAuth({
+				isAuthenticated: true,
+				user: response.data.user.email,
+				id: response.data.user.id,
+				token: response.data.jwt,
+			});
+			setLoginLoading(false);
+			return true;
+
+		} else if (response.status === 400){
+
+			console.log("400 hatası");
+			toast.error(response.data.message[0].messages[0].message);
+			setLoginLoading(false);
+			return false;
+
+		} else if (response.status === 500 ){
+
+			console.log(response.statusText);
+			toast.error(response.statusText);
+			setLoginLoading(false);
+			return false;
+
+		} else if (response.status === 403){
+
+			console.log("401 hatası");
+			toast.error(response.statusText);
+			setLoginLoading(false);
+			return false;
+
+		} else {
+			setLoginLoading(false);
+			return false;
+		}
+	};
+
 	const values = {
 		registerUser,
 		registerLoading,
 		auth,
 		setRegisterLoading,
+		loginUser,
+		loginLoading,
 		
 	};
 

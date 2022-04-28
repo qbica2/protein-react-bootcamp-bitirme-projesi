@@ -7,6 +7,7 @@ function Landing() {
 	return (
 		<div>Landing
 			<button onClick={() => navigate("/register")}>register</button>
+			<button onClick={() => navigate("/login")}>login</button>
 		</div>
 	);
 }
