@@ -9,7 +9,7 @@ const ProductsContext = createContext();
 export const ProductsProvider = ({ children }) => {
 
 	const [categories, setCategories] = useState([]);
-	const [selectedCategory, setSelectedCategory] = useState(null);
+	const [selectedCategory, setSelectedCategory] = useState(1);
 
 	useEffect(() => {
 		const getCategories = async () => {
