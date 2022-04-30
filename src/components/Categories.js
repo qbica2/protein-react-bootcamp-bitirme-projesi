@@ -1,18 +1,26 @@
-import React, { useContext,useRef } from "react";
-import style from "../styles/categories.module.scss";
+import React, { useContext, useRef, useEffect } from "react";
 
+import style from "../styles/categories.module.scss";
 import ProductsContext from "../contexts/ProductsContext";
 import { slide } from "../utils/slide";
 
 function Categories() {
 
-	const { categories, selectedCategory, setSelectedCategory } = useContext(ProductsContext);
+	const { categories, selectedCategory, setSelectedCategory, setSearchParams } = useContext(ProductsContext);
 	const sliderRef = useRef();
 
-	const handleSelected = (category,ref) => {
+	useEffect(() => {
 
+		setTimeout(() => {
+			slide(selectedCategory, sliderRef);
+		}, 2000);
+
+	},[]);
+
+	const handleSelected = (category, ref) => {
 		slide(category,ref);	
 		setSelectedCategory(category);
+		setSearchParams({category:category});
 	};
 
 	return (
