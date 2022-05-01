@@ -6,7 +6,7 @@ export const slide = (id, ref) => {
 	ref.current.style.width = width + "px";
 
 	let x = 0;
-	for (let i = 1; i < id; i++) {
+	for (let i = 0; i < id; i++) {
 		x = Number(document.getElementById(i).offsetWidth) + x;
 	}
 	ref.current.style.left = x + "px";

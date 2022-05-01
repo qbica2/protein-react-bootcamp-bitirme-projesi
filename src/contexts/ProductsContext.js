@@ -11,7 +11,7 @@ export const ProductsProvider = ({ children }) => {
 	const [searchParams,setSearchParams] = useSearchParams();
 
 	const [categories, setCategories] = useState([]);
-	const [selectedCategory, setSelectedCategory] = useState( Number(searchParams.get("category")) || 1 );
+	const [selectedCategory, setSelectedCategory] = useState( Number(searchParams.get("category")) || 0 );
 
 
 	useEffect(() => {
