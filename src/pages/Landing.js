@@ -5,7 +5,9 @@ import style from "../styles/landing.module.scss";
 import Logo from "../constants/Logo";
 import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
+
 import Categories from "../components/Categories";
+import ProductList from "../components/ProductList";
 
 import AuthContext from "../contexts/AuthContext";
 
@@ -39,6 +41,7 @@ function Landing() {
 			<div className={style.container}>
 				<div className={style.banner}></div>
 				<Categories/>
+				<ProductList/>
 			</div>
 		</div>
 	);

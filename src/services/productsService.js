@@ -14,3 +14,33 @@ export const getAllCategories = async () => {
 		return err.response;
 	}
 };
+
+export const getAllProducts = async () => {
+	try {
+		const response = await axios.get(requests.products);
+		console.log("getAllProducts response", response);
+		return response;
+		
+	} catch (err) {
+		console.log("getAllProducts hatası",err);
+		return err.response;
+	}
+};
+
+export const getProductsByCategory = async (categoryId) => {
+
+	try {
+		const response = await axios.get(requests.products, {
+			params: {
+				category: categoryId
+			}
+		});	
+		console.log("getProductsByCategory response", response);
+		return response;
+
+	} catch (err) {
+		console.log("getProductsByCategory hatası",err);
+		return err.response;
+	}
+
+};

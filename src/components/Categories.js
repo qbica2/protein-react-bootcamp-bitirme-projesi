@@ -13,7 +13,7 @@ function Categories() {
 
 		setTimeout(() => {
 			slide(selectedCategory, sliderRef);
-		}, 2000);
+		}, 4000);
 
 	},[]);
 
@@ -27,7 +27,7 @@ function Categories() {
 		<div className={style.container}>
 			<div className={style.categories}>
 				<div className={style.category}>
-					<span onClick={(e)=>handleSelected(e.target.id,sliderRef)} id={0} 
+					<span onClick={(e)=>handleSelected(Number(e.target.id),sliderRef)} id={0} 
 						className={`${selectedCategory==0 ? style.selected: ""}`}>Hepsi</span>
 				</div>
 				{
@@ -38,7 +38,7 @@ function Categories() {
 					))
 				}
 				<div className={style.category}>
-					<span onClick={(e)=>handleSelected(e.target.id,sliderRef)} id={14} 
+					<span onClick={(e)=>handleSelected(Number(e.target.id),sliderRef)} id={14} 
 						className={`${selectedCategory==14 ? style.selected: ""}`}>Diğer</span>
 				</div>
 			</div>
