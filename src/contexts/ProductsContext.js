@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { getAllCategories, getAllProducts, getProductsByCategory } from "../services/productsService";
+import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount } from "../services/productsService";
 
 const ProductsContext = createContext();
 
@@ -14,6 +14,8 @@ export const ProductsProvider = ({ children }) => {
 	const [selectedCategory, setSelectedCategory] = useState( Number(searchParams.get("category")) || 0 );
 
 	const [products, setProducts] = useState([]);
+	const [page, setPage] = useState(0);
+	const [hasMore, setHasMore] = useState(true);
 
 
 	useEffect(() => {
@@ -35,32 +37,48 @@ export const ProductsProvider = ({ children }) => {
 
 			if(selectedCategory === 0){
 
-				const response = await getAllProducts();
-				setProducts(response.data);
+				const response = await getAllProducts(page);
+
+				if (response.status === 200) {
+					console.log("page",page,"response",response.data);
+					setProducts([...products, ...response.data]);
+				}
 
 			} else  if(selectedCategory < 14){
-				const response = await getProductsByCategory(selectedCategory);
+				const response = await getProductsByCategory(selectedCategory,page);
 
 				if(response.status === 200){
 					console.log("getProductsByCategory response", response);
-					setProducts(response.data);
+					setProducts([...products, ...response.data]);
 				}
 
 			} else if (selectedCategory === 14){
 
-				const response = await getProductsByCategory(selectedCategory);
-				const res2 = await getProductsByCategory(selectedCategory+1);
-				const res3 = await getProductsByCategory(selectedCategory+2);
+				const response = await getProductsByCategory(selectedCategory,page);
+				const res2 = await getProductsByCategory(selectedCategory+1,page);
+				const res3 = await getProductsByCategory(selectedCategory+2,page);
 				if(response.status === 200 && res2.status === 200 && res3.status === 200){
 					console.log("getProductsByCategory response", response);
-					setProducts([...response.data, ...res2.data, ...res3.data]);
+					setProducts([...products,...response.data, ...res2.data, ...res3.data]);
 				}
 
 			}
 		};
 		getProducts();
-	}, [selectedCategory]);
+	}, [selectedCategory,page]);
 
+	useEffect(() => {
+		const getCount = async () => {
+			const response = await getProductsCount();
+			console.log("getProductsCount response", response);
+			if(Number(response.data) - (page +1) * 15 > 0){
+				setHasMore(true);
+			} else {
+				setHasMore(false);
+			}
+		};
+		getCount();
+	}, [page]);
 
 
 
@@ -71,6 +89,9 @@ export const ProductsProvider = ({ children }) => {
 		setSelectedCategory,
 		setSearchParams,
 		products,
+		setProducts,
+		setPage,
+		hasMore
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

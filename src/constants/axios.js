@@ -8,5 +8,6 @@ export const requests = {
 	register: "/auth/local/register",
 	login: "/auth/local",
 	categories: "/categories",
-	products: "/products",
+	products: "/products?_limit=15",
+	count: "/products/count",
 };

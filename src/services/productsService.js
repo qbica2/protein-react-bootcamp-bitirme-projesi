@@ -15,26 +15,22 @@ export const getAllCategories = async () => {
 	}
 };
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (page) => {
 	try {
-		const response = await axios.get(requests.products);
+		const response = await axios.get(`${requests.products}&_start=${page*15} `);
 		console.log("getAllProducts response", response);
 		return response;
-		
+
 	} catch (err) {
 		console.log("getAllProducts hatası",err);
 		return err.response;
 	}
 };
 
-export const getProductsByCategory = async (categoryId) => {
+export const getProductsByCategory = async (categoryId,page) => {
 
 	try {
-		const response = await axios.get(requests.products, {
-			params: {
-				category: categoryId
-			}
-		});	
+		const response = await axios.get(`${requests.products}&_start=${page*15}&category=${categoryId} ` );	
 		console.log("getProductsByCategory response", response);
 		return response;
 
@@ -43,4 +39,16 @@ export const getProductsByCategory = async (categoryId) => {
 		return err.response;
 	}
 
+};
+
+export const getProductsCount = async () => {
+	try {
+		const response = await axios.get(requests.count);
+		console.log("getProductsCount response", response);
+		return response;
+
+	} catch (err) {
+		console.log("getProductsCount hatası",err);
+		return err.response;
+	}
 };

@@ -6,7 +6,7 @@ import { slide } from "../utils/slide";
 
 function Categories() {
 
-	const { categories, selectedCategory, setSelectedCategory, setSearchParams } = useContext(ProductsContext);
+	const { categories, selectedCategory, setSelectedCategory, setSearchParams, setPage, setProducts } = useContext(ProductsContext);
 	const sliderRef = useRef();
 
 	useEffect(() => {
@@ -17,28 +17,30 @@ function Categories() {
 
 	},[]);
 
-	const handleSelected = (category, ref) => {
+	const handleSelectCategory = ( category, ref ) => {
+		setProducts([]);
 		slide(category,ref);	
 		setSelectedCategory(category);
 		setSearchParams({category:category});
+		setPage(0);
 	};
 
 	return (
 		<div className={style.container}>
 			<div className={style.categories}>
 				<div className={style.category}>
-					<span onClick={(e)=>handleSelected(Number(e.target.id),sliderRef)} id={0} 
+					<span onClick={(e)=>handleSelectCategory(Number(e.target.id),sliderRef)} id={0} 
 						className={`${selectedCategory==0 ? style.selected: ""}`}>Hepsi</span>
 				</div>
 				{
 					categories.slice(0,13).map((category) => (
 						<div key={category.id} className={style.category} id={category.id} >
-							<span onClick={()=>handleSelected(category.id,sliderRef)} className={`${category.id===selectedCategory? style.selected: ""}`}>{category.name}</span>
+							<span onClick={()=>handleSelectCategory(category.id,sliderRef)} className={`${category.id===selectedCategory? style.selected: ""}`}>{category.name}</span>
 						</div>
 					))
 				}
 				<div className={style.category}>
-					<span onClick={(e)=>handleSelected(Number(e.target.id),sliderRef)} id={14} 
+					<span onClick={(e)=>handleSelectCategory(Number(e.target.id),sliderRef)} id={14} 
 						className={`${selectedCategory==14 ? style.selected: ""}`}>Diğer</span>
 				</div>
 			</div>
