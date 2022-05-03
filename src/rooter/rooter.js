@@ -12,7 +12,7 @@ function Rooter  () {
 			<Route path="/" element={<Landing />} />	
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
-			<Route path="/products/:id" element={<Detail />} />
+			<Route path="/product/:id" element={<Detail />} />
 		</Routes>
 	);
 }

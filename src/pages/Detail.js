@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext} from "react";
 
 import style from "../styles/detail.module.scss";
 import Logo from "../constants/Logo";
 import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
 
+import ProductsContext from "../contexts/ProductsContext";
+
 function Detail() {
+
+	const { detail } = useContext(ProductsContext);
+	const photoBaseUrl = "https://bootcamp.akbolat.net/";
+	console.log(detail);
 	return (
 		<div className={style.detail}>
 			<nav>
@@ -21,18 +27,18 @@ function Detail() {
 			</nav>
 			<div className={style.content}>
 				<div className={style.image}>
-					<img src="" alt=""/>
+					<img src={photoBaseUrl+detail?.image?.url} alt="resim"/>
 				</div>
 				<div className={style.info}>
 					<div className={style.title}>
-						Beli Uzun Trençkot Kareli
+						{detail.name}
 					</div>
 					<div className={style.properties}>
 						<div className={style.left}>
 							Marka:
 						</div>
 						<div className={style.right}>
-							Lusi Viton
+							{detail.brand}
 						</div>
 					</div>
 					<div className={style.properties}>
@@ -40,7 +46,7 @@ function Detail() {
 							Renk:
 						</div>
 						<div className={style.right}>
-							Bej rengi
+							{detail.color}
 						</div>
 					</div>
 					<div className={style.properties}>
@@ -48,11 +54,11 @@ function Detail() {
 							Kullanım Durumu:
 						</div>
 						<div className={style.right}>
-							Az Kullanılmış
+							{detail.status}
 						</div>
 					</div>
 					<div className={style.price}>
-					319,90 TL
+						{detail.price} TL
 					</div>
 					<div className={style.buttonCon}>
 						<button className={style.buy}>Satın Al</button>
@@ -61,7 +67,7 @@ function Detail() {
 					<div className={style.description}>
 						<span>Açıklama</span>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							{detail.description}
 						</p>
 					</div>
 				</div>

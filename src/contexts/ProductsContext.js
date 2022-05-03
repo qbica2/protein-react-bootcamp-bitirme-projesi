@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount } from "../services/productsService";
+import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById } from "../services/productsService";
 
 const ProductsContext = createContext();
 
@@ -16,6 +16,7 @@ export const ProductsProvider = ({ children }) => {
 	const [products, setProducts] = useState([]);
 	const [page, setPage] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
+	const [detail, setDetail] = useState({});
 
 
 	useEffect(() => {
@@ -80,6 +81,14 @@ export const ProductsProvider = ({ children }) => {
 		getCount();
 	}, [page]);
 
+	const getProduct = async (id) => {
+		const response = await getProductById(id);
+		console.log("getProductById response", response);
+		if(response.status === 200){
+			setDetail(response.data);
+		}
+		
+	};
 
 
 
@@ -91,7 +100,9 @@ export const ProductsProvider = ({ children }) => {
 		products,
 		setProducts,
 		setPage,
-		hasMore
+		hasMore,
+		getProduct,
+		detail
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

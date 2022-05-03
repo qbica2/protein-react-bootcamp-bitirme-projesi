@@ -1,12 +1,15 @@
 import React, { useRef, useEffect ,useContext}from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+
 import style from "../styles/productListItem.module.scss";
 import ProductsContext from "../contexts/ProductsContext";
 
-function ProductListItem( {brand, color, image, price, isLast}) {
+function ProductListItem( {brand, color, image, price, isLast, id}) {
 	
 	const imgRef = useRef();
-	const { setPage, hasMore } = useContext(ProductsContext);
+	const { setPage, hasMore, getProduct } = useContext(ProductsContext);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 
@@ -33,9 +36,14 @@ function ProductListItem( {brand, color, image, price, isLast}) {
 			
 	}, [imgRef,isLast]);
 
+	const handleGetDetail = () => {
+		getProduct(id);
+		navigate(`/product/${id}`);
+	};
+
 
 	return (
-		<div className={style.container} >
+		<div className={style.container} onClick={handleGetDetail} >
 			<div className={style.image} ref={imgRef}>
 				<img src={image} alt="resim"/>
 			</div>
@@ -60,7 +68,8 @@ ProductListItem.propTypes = {
 	color: PropTypes.string.isRequired,
 	image: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
-	isLast: PropTypes.bool
+	isLast: PropTypes.bool,
+	id: PropTypes.number.isRequired
 };
 
 export default ProductListItem;
