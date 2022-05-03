@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useState } from "react";
 
 import style from "../styles/detail.module.scss";
 import Logo from "../constants/Logo";
@@ -6,12 +6,15 @@ import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
 
 import ProductsContext from "../contexts/ProductsContext";
+import BuyModal from "../components/BuyModal";
 
 function Detail() {
 
 	const { detail } = useContext(ProductsContext);
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
-	console.log(detail);
+
+	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
+	
 	return (
 		<div className={style.detail}>
 			<nav>
@@ -61,8 +64,10 @@ function Detail() {
 						{detail.price} TL
 					</div>
 					<div className={style.buttonCon}>
-						<button className={style.buy}>Satın Al</button>
-						<button className={style.offer}>Teklif Ver</button>
+						<button className={style.buy} onClick={()=>setIsBuyModalOpen(true)}>Satın Al</button>
+						{
+							detail.isOfferable && <button className={style.offer}>Teklif Ver</button>
+						}
 					</div>
 					<div className={style.description}>
 						<span>Açıklama</span>
@@ -72,6 +77,9 @@ function Detail() {
 					</div>
 				</div>
 			</div>
+			{
+				isBuyModalOpen && <BuyModal closeModal={()=>setIsBuyModalOpen(false)}/>
+			}
 		</div>
 	);
 }
