@@ -7,6 +7,7 @@ import AvatarIcon from "../constants/icons/AvatarIcon";
 
 import ProductsContext from "../contexts/ProductsContext";
 import BuyModal from "../components/BuyModal";
+import OfferModal from "../components/OfferModal";
 
 function Detail() {
 
@@ -14,6 +15,7 @@ function Detail() {
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
 
 	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
+	const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
 	
 	return (
 		<div className={style.detail}>
@@ -66,7 +68,7 @@ function Detail() {
 					<div className={style.buttonCon}>
 						<button className={style.buy} onClick={()=>setIsBuyModalOpen(true)}>Satın Al</button>
 						{
-							detail.isOfferable && <button className={style.offer}>Teklif Ver</button>
+							detail.isOfferable && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button>
 						}
 					</div>
 					<div className={style.description}>
@@ -79,6 +81,9 @@ function Detail() {
 			</div>
 			{
 				isBuyModalOpen && <BuyModal closeModal={()=>setIsBuyModalOpen(false)}/>
+			}
+			{
+				isOfferModalOpen && <OfferModal closeModal={()=>setIsOfferModalOpen(false)} src={photoBaseUrl+detail?.image?.url}/>
 			}
 		</div>
 	);
