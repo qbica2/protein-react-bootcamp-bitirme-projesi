@@ -1,11 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import PropTypes from "prop-types";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
 import style from "../styles/offermodal.module.scss";
 import CloseIcon from "../constants/icons/CloseIcon";
 import CheckedIcon from "../constants/icons/CheckedIcon";
 import UncheckedIcon from "../constants/icons/UncheckedIcon";
+import { offerValidations } from "../constants/validation";
 
 
 function OfferModal({ closeModal, src}) {
@@ -13,6 +15,18 @@ function OfferModal({ closeModal, src}) {
 	const [checked20, setChecked20] = useState(false);
 	const [checked30, setChecked30] = useState(false);
 	const [checked40, setChecked40] = useState(false);
+	const [isOfferValid, setIsOfferValid] = useState(false);
+
+	console.log(isOfferValid);
+	const {handleSubmit,handleChange,handleBlur,values,errors,touched} = useFormik({
+		initialValues: {
+			offer:"",
+		},
+		validationSchema: offerValidations,
+		onSubmit: async () => {
+			console.log(values);	
+		}
+	});
 
 	const handleOfferClick = (value) => {
 		setChecked20(false);
@@ -26,6 +40,21 @@ function OfferModal({ closeModal, src}) {
 			setChecked40(!checked40);
 		}
 	};
+
+	useEffect(() => {
+		if(errors.offer) {
+			toast.error(errors.offer);
+		}
+	},[errors]);
+
+	useEffect(() => {
+		if((checked20 || checked30 || checked40) && values.offer) {
+			setIsOfferValid(false);
+			toast.warning("Yalnızca bir tür seçebilirsiniz!");
+		}else{
+			setIsOfferValid(true);
+		}
+	},[checked20,checked30,checked40,values.offer]);
 	
 	return (
 		<div className={style.modal}> 
@@ -74,10 +103,19 @@ function OfferModal({ closeModal, src}) {
 						%40'si Kadar Teklif Ver
 					</div>
 					<div className={style.formGroup}>
-						<input type="number" id="price" placeholder="Teklif Belirle" />
+						<input 
+							className={touched.offer && errors.offer ? `${style.error}` : ""}
+							type="number" 
+							name="offer" 
+							id="price" 
+							placeholder="Teklif Belirle" 
+							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.offer}
+						/>
 						<label htmlFor="price">TL</label>
 					</div>
-					<button>Onayla</button>
+					<button type="submit" onClick={handleSubmit}>Onayla</button>
 				</form>
 			</div>	
 		</div>

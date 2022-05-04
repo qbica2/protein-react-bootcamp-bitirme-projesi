@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 import style from "../styles/detail.module.scss";
 import Logo from "../constants/Logo";
@@ -85,6 +86,7 @@ function Detail() {
 			{
 				isOfferModalOpen && <OfferModal closeModal={()=>setIsOfferModalOpen(false)} src={photoBaseUrl+detail?.image?.url}/>
 			}
+			<ToastContainer hideProgressBar={true} autoClose={4000} pauseOnHover={false} closeOnClick closeButton={false} theme="colored" />
 		</div>
 	);
 }

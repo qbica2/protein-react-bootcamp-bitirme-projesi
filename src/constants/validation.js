@@ -9,4 +9,8 @@ const Validations = yup.object().shape({
 		.required("Şifre alanı zorunludur")
 });
 
+export const offerValidations = yup.object().shape({
+	offer: yup.number("Lütfen geçerli bir sayı giriniz").positive("Lütfen pozitif bir sayı giriniz")
+});
+
 export default Validations ;
