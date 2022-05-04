@@ -1,5 +1,6 @@
 import React , { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import style from "../styles/landing.module.scss";
 import Logo from "../constants/Logo";
@@ -43,6 +44,7 @@ function Landing() {
 				<Categories/>
 				<ProductList/>
 			</div>
+			<ToastContainer hideProgressBar={true} autoClose={4000} pauseOnHover={false} closeOnClick closeButton={false} theme="colored" />
 		</div>
 	);
 }

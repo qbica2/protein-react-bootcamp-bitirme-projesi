@@ -1,14 +1,17 @@
 import React, { useRef, useEffect ,useContext}from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import style from "../styles/productListItem.module.scss";
 import ProductsContext from "../contexts/ProductsContext";
+import AuthContext from "../contexts/AuthContext";
 
 function ProductListItem( {brand, color, image, price, isLast, id}) {
 	
 	const imgRef = useRef();
 	const { setPage, hasMore, getProduct } = useContext(ProductsContext);
+	const { auth } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -37,6 +40,10 @@ function ProductListItem( {brand, color, image, price, isLast, id}) {
 	}, [imgRef,isLast]);
 
 	const handleGetDetail = () => {
+		if(!auth.isAuthenticated){
+			toast.error("Lütfen giriş yapınız");
+			return;
+		}
 		getProduct(id);
 		navigate(`/product/${id}`);
 	};
