@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 import style from "../styles/detail.module.scss";
 import Logo from "../constants/Logo";
@@ -13,22 +13,22 @@ import OfferModal from "../components/OfferModal";
 
 function Detail() {
 
-	const { detail } = useContext(ProductsContext);
+	const { detail, buyProduct } = useContext(ProductsContext);
 	const { submittedOffers,cancelOffer } = useContext(OfferContext);
-	console.log(submittedOffers);
+	
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
 	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
 	const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
 
 	const [price, setPrice] = useState(0);
 	const [offer, setOffer] = useState({});
-	console.log("offer",offer);
+	const [isBuy, setIsBuy] = useState(false);
+	
 
 	useEffect(() => {
 		setOffer({});
 		submittedOffers.map(offer => {
 			if(offer.product.id === detail.id){
-				console.log("burdasın");
 				setOffer(offer);
 			}
 		});
@@ -42,6 +42,18 @@ function Detail() {
 			}
 		});
 	};
+
+	const handleBuyProduct = async () => {
+		const isSold = await buyProduct(detail.id);
+		if(isSold){
+			toast.success("Satın Alındı");
+			setIsBuyModalOpen(false);
+			setIsBuy(true);
+		}else{
+			toast.error("Satın Alınamadı");
+		}
+	};
+
 	
 
 
@@ -93,16 +105,21 @@ function Detail() {
 					<div className={style.price}>
 						{detail.price} TL
 						{
-							offer.offerPrice && <span>Verilen Teklif: <strong>{offer?.offerPrice} TL</strong></span>
+							offer.offerPrice && <span>Verilen Teklif : <strong> {offer?.offerPrice} TL</strong></span>
 						}
 					</div>
 					<div className={style.buttonCon}>
-						<button className={style.buy} onClick={()=>setIsBuyModalOpen(true)}>Satın Al</button>
 						{
-							detail.isOfferable && !offer.offerPrice && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button> 
+							(detail.isSold || isBuy) && <span>Bu ürün Satışta Değil </span>
 						}
 						{
-							offer.offerPrice && <button onClick={()=>handleCancelOffer()} className={style.offer}>Teklifi Geri Çek</button>
+							!detail.isSold && !isBuy && <button className={style.buy} onClick={()=>setIsBuyModalOpen(true)}>Satın Al</button>
+						}
+						{
+							!detail.isSold && detail.isOfferable && !offer.offerPrice && !isBuy && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button> 
+						}
+						{
+							!detail.isSold && offer.offerPrice && !isBuy && <button onClick={()=>handleCancelOffer()} className={style.offer}>Teklifi Geri Çek</button>
 						}
 					</div>
 					<div className={style.description}>
@@ -114,7 +131,7 @@ function Detail() {
 				</div>
 			</div>
 			{
-				isBuyModalOpen && <BuyModal closeModal={()=>setIsBuyModalOpen(false)}/>
+				isBuyModalOpen && <BuyModal closeModal={()=>setIsBuyModalOpen(false)} buyProduct={handleBuyProduct}/>
 			}
 			{
 				isOfferModalOpen && <OfferModal closeModal={()=>setIsOfferModalOpen(false)} src={photoBaseUrl+detail?.image?.url} product={detail} price={price} setPrice={setPrice}/>

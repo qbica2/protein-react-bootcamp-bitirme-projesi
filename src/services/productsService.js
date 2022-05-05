@@ -64,3 +64,21 @@ export const getProductById = async (id) => {
 		return err.response;
 	}
 };
+
+export const buyProductById = (id)	=> {
+	try	{
+		const response = axios.put(`${requests.products}/${id}`,{
+			isSold: true,
+		},
+		{
+			headers: {
+				Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+			}
+		});
+		console.log("buyProductById response", response);
+		return response;
+	} catch (err) {
+		console.log("buyProductById hatası",err);
+		return err.response;
+	}
+};

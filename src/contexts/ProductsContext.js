@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById } from "../services/productsService";
+import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById, buyProductById } from "../services/productsService";
 
 const ProductsContext = createContext();
 
@@ -90,6 +90,19 @@ export const ProductsProvider = ({ children }) => {
 		
 	};
 
+	const buyProduct =  async (id) => {
+		const response = await buyProductById(id);
+		console.log("buyProductById response", response);
+		if(response.status === 200){
+			console.log("buyProductById response", response.data);
+			console.log("satıldı");
+			return true;
+		}
+		return false;
+	};
+
+
+
 
 
 	const values={
@@ -103,6 +116,7 @@ export const ProductsProvider = ({ children }) => {
 		hasMore,
 		getProduct,
 		detail,
+		buyProduct
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

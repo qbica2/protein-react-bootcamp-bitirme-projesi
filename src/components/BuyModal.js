@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "../styles/buymodal.module.scss";
 
-function BuyModal( { closeModal}) {
+function BuyModal( { closeModal, buyProduct}) {
+
 	return (
 		<div className={style.modal}>
 			<div className={style.content}>
@@ -14,7 +15,7 @@ function BuyModal( { closeModal}) {
 				</div>
 				<div className={style.buttonCon}>
 					<button onClick={closeModal} className={style.cancel}>Vazgeç</button>
-					<button className={style.confirm}>Satın Al</button>
+					<button onClick={buyProduct} className={style.confirm}>Satın Al</button>
 				</div>
 			</div>
 		</div>
@@ -22,7 +23,8 @@ function BuyModal( { closeModal}) {
 }
 
 BuyModal.propTypes = {
-	closeModal: PropTypes.func.isRequired
+	closeModal: PropTypes.func.isRequired,
+	buyProduct: PropTypes.func.isRequired,
 };
 
 export default BuyModal;
