@@ -102,7 +102,7 @@ export const ProductsProvider = ({ children }) => {
 		setPage,
 		hasMore,
 		getProduct,
-		detail
+		detail,
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

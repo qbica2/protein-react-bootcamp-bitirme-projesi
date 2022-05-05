@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 
 import style from "../styles/detail.module.scss";
@@ -7,17 +7,44 @@ import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
 
 import ProductsContext from "../contexts/ProductsContext";
+import OfferContext from "../contexts/OfferContext";
 import BuyModal from "../components/BuyModal";
 import OfferModal from "../components/OfferModal";
 
 function Detail() {
 
 	const { detail } = useContext(ProductsContext);
+	const { submittedOffers,cancelOffer } = useContext(OfferContext);
+	console.log(submittedOffers);
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
-
 	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
 	const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
+
+	const [price, setPrice] = useState(0);
+	const [offer, setOffer] = useState({});
+	console.log("offer",offer);
+
+	useEffect(() => {
+		setOffer({});
+		submittedOffers.map(offer => {
+			if(offer.product.id === detail.id){
+				console.log("burdasın");
+				setOffer(offer);
+			}
+		});
+	}, [submittedOffers,detail]);
+			
+	const handleCancelOffer =  () => {
+		submittedOffers.map(offer => {
+			if(offer.product.id === detail.id){
+				cancelOffer(offer.id);
+				setOffer({});
+			}
+		});
+	};
 	
+
+
 	return (
 		<div className={style.detail}>
 			<nav>
@@ -65,11 +92,17 @@ function Detail() {
 					</div>
 					<div className={style.price}>
 						{detail.price} TL
+						{
+							offer.offerPrice && <span>Verilen Teklif: <strong>{offer?.offerPrice} TL</strong></span>
+						}
 					</div>
 					<div className={style.buttonCon}>
 						<button className={style.buy} onClick={()=>setIsBuyModalOpen(true)}>Satın Al</button>
 						{
-							detail.isOfferable && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button>
+							detail.isOfferable && !offer.offerPrice && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button> 
+						}
+						{
+							offer.offerPrice && <button onClick={()=>handleCancelOffer()} className={style.offer}>Teklifi Geri Çek</button>
 						}
 					</div>
 					<div className={style.description}>
@@ -84,7 +117,7 @@ function Detail() {
 				isBuyModalOpen && <BuyModal closeModal={()=>setIsBuyModalOpen(false)}/>
 			}
 			{
-				isOfferModalOpen && <OfferModal closeModal={()=>setIsOfferModalOpen(false)} src={photoBaseUrl+detail?.image?.url}/>
+				isOfferModalOpen && <OfferModal closeModal={()=>setIsOfferModalOpen(false)} src={photoBaseUrl+detail?.image?.url} product={detail} price={price} setPrice={setPrice}/>
 			}
 			<ToastContainer hideProgressBar={true} autoClose={4000} pauseOnHover={false} closeOnClick closeButton={false} theme="colored" />
 		</div>

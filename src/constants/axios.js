@@ -10,4 +10,5 @@ export const requests = {
 	categories: "/categories",
 	products: "/products",
 	count: "/products/count",
+	offers: "/offers",
 };

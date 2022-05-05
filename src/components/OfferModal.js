@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -8,23 +9,43 @@ import CloseIcon from "../constants/icons/CloseIcon";
 import CheckedIcon from "../constants/icons/CheckedIcon";
 import UncheckedIcon from "../constants/icons/UncheckedIcon";
 import { offerValidations } from "../constants/validation";
+import OfferContext from "../contexts/OfferContext";
 
+function OfferModal({ closeModal, src, product, price, setPrice}) {
 
-function OfferModal({ closeModal, src}) {
-
+	const { handleOffer } = useContext(OfferContext);
+	
 	const [checked20, setChecked20] = useState(false);
 	const [checked30, setChecked30] = useState(false);
 	const [checked40, setChecked40] = useState(false);
 	const [isOfferValid, setIsOfferValid] = useState(false);
 
-	console.log(isOfferValid);
 	const {handleSubmit,handleChange,handleBlur,values,errors,touched} = useFormik({
 		initialValues: {
 			offer:"",
 		},
 		validationSchema: offerValidations,
-		onSubmit: async () => {
-			console.log(values);	
+		onSubmit: async () => {	
+			if(!isOfferValid){
+				toast.error("Ödeme seçeneğini seçiniz.");
+				return;
+			}
+			if(values.offer){
+				setPrice(values.offer);
+			}
+			const offer = {
+				product: product.id,
+				users_permissions_user: product.users_permissions_user.id,
+				offerPrice: values.offer || price,
+				isStatus: true,
+				published_at: new Date(),
+				created_at: new Date(),
+				updated_at: new Date(),
+			};
+
+			handleOffer(offer);
+			
+			closeModal();
 		}
 	});
 
@@ -34,10 +55,13 @@ function OfferModal({ closeModal, src}) {
 		setChecked40(false);
 		if (value.type === 20) {
 			setChecked20(!checked20);
+			setPrice(product.price * 0.2);
 		} else if (value.type === 30) {
 			setChecked30(!checked30);
+			setPrice(product.price * 0.3);
 		} else if (value.type === 40) {
 			setChecked40(!checked40);
+			setPrice(product.price * 0.4);
 		}
 	};
 
@@ -73,12 +97,12 @@ function OfferModal({ closeModal, src}) {
 							<img src={src} alt="product"/>
 						</div>
 						<div className={style.title}>
-						Çikolata
+							{product.name}
 						</div>
 					</div>
 					<div className={style.right}>
 						<div className={style.price}>
-							320 TL
+							{product.price} TL
 						</div>
 					</div>
 				</div>
