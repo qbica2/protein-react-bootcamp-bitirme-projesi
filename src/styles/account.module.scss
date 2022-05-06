@@ -1,14 +1,16 @@
 .account{
 	width: 100%;
+	height: 100vh;
 	background: #F2F2F2;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	header{
+		margin-top: 20px;
 		width: 1480px;
 		height: 70px;
 		padding:0 26px;
-		background-color: #FFFFFF ;
+		background-color: #FFF ;
 		border-radius: 8px;
 		color: #525252;
 		font-size: 15px;
@@ -18,6 +20,33 @@
 		align-items: center;
 		span{
 			margin-left: 10px;
+		}
+	}
+	.offers{
+		margin-top: 10px;
+		width: 1480px;
+		height: 709px;
+		background-color: #FFF;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.tabs{
+			margin-top: 20px;
+			padding-left: 30px;
+			width: 100%;
+			display: flex;
+			border-bottom: 1px solid #E5E5E5;
+			.tab{
+				margin: 0 20px;
+				font-size: 15px;
+				line-height: 20px;
+			}
+			.active{
+				color: #4B9CE2;
+				font-weight: bold;
+				border-bottom: 3px solid #4B9CE2;
+			}
 		}
 	}
 }

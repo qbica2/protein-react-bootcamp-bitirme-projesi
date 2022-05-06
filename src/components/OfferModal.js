@@ -10,10 +10,12 @@ import CheckedIcon from "../constants/icons/CheckedIcon";
 import UncheckedIcon from "../constants/icons/UncheckedIcon";
 import { offerValidations } from "../constants/validation";
 import OfferContext from "../contexts/OfferContext";
+import AuthContext from "../contexts/AuthContext";
 
 function OfferModal({ closeModal, src, product, price, setPrice}) {
 
 	const { handleOffer } = useContext(OfferContext);
+	const { auth } = useContext(AuthContext);
 	
 	const [checked20, setChecked20] = useState(false);
 	const [checked30, setChecked30] = useState(false);
@@ -35,9 +37,9 @@ function OfferModal({ closeModal, src, product, price, setPrice}) {
 			}
 			const offer = {
 				product: product.id,
-				users_permissions_user: product.users_permissions_user.id,
+				users_permissions_user: auth.id,
 				offerPrice: values.offer || price,
-				isStatus: true,
+				isStatus: null,
 				published_at: new Date(),
 				created_at: new Date(),
 				updated_at: new Date(),
