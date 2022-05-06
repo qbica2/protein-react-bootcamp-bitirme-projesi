@@ -2,9 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import style from "../styles/detail.module.scss";
-import Logo from "../constants/Logo";
-import AddIcon from "../constants/icons/AddIcon";
-import AvatarIcon from "../constants/icons/AvatarIcon";
+import Navigation from "../constants/Navigation";
 
 import ProductsContext from "../contexts/ProductsContext";
 import OfferContext from "../contexts/OfferContext";
@@ -59,17 +57,7 @@ function Detail() {
 
 	return (
 		<div className={style.detail}>
-			<nav>
-				<div className={style.navbar}>
-					<div className={style.logo}>
-						<Logo width= {129} height= {42}/>
-					</div>
-					<div className={style.links}>
-						<a> <AddIcon width={13} height={13} color="#4B9CE2"/><span>Ürün Ekle</span></a>
-						<a> <AvatarIcon width={13} height={13} color="#4B9CE2"/> <span>Hesabım</span></a>
-					</div>
-				</div>
-			</nav>
+			<Navigation/>
 			<div className={style.content}>
 				<div className={style.image}>
 					<img src={photoBaseUrl+detail?.image?.url} alt="resim"/>

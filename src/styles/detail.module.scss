@@ -4,35 +4,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	nav{
-		width: 100%;
-		height: 80px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: #fff;
-		.navbar{
-			width: 1480px;
-			height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			.links{
-				display: flex;
-				a{
-					padding: 10px 20px;
-					color: #4B9CE2;
-					font-size: 20px;
-					font-weight: bold;
-					letter-spacing: 0;
-					cursor: pointer;
-					span{
-						margin-left: 5px;
-					}
-				}
-			}
-		}
-	}
 	.content{
 		margin-top: 20px;
 		margin-bottom: 211px;

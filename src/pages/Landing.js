@@ -30,7 +30,7 @@ function Landing() {
 						auth.isAuthenticated ? 
 							<div className={style.links}>
 								<a> <AddIcon width={13} height={13} color="#4B9CE2"/><span>Ürün Ekle</span></a>
-								<a> <AvatarIcon width={13} height={13} color="#4B9CE2"/> <span>Hesabım</span></a>
+								<a onClick={()=>navigate("/account")}> <AvatarIcon width={13} height={13} color="#4B9CE2"/> <span>Hesabım</span></a>
 							</div>
 							:
 							<div className={style.links}>
