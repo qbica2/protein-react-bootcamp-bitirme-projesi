@@ -1,18 +1,40 @@
-import React, { useState} from "react";
+import React, { useState , useContext} from "react";
 import ImageUploading from "react-images-uploading";
+import { useFormik } from "formik";
 
+import ProductsContext from "../contexts/ProductsContext";
 import style from "../styles/upload.module.scss";
 import Navigation from "../constants/Navigation";
 import UploadIcon from "../constants/icons/UploadIcon";
 import CloseIcon from "../constants/icons/CloseIcon";
+import { uploadValidations } from "../constants/validation";
 
 function AddProduct() {
 	
+	const { categories } = useContext(ProductsContext);
+	console.log(categories);
 	const [file, setFile] = useState([]);
 
 	const onChange = (imageList) => {	
 		setFile(imageList);
 	};
+
+	const { handleSubmit, handleChange, handleBlur, values, errors, touched } = useFormik({
+		initialValues: {
+			name:"",
+			description:"",
+			category:"",
+			brand:"",
+			color:"",
+			status:"",
+			price:"",
+			isOfferable:false,
+		},
+		validationSchema: uploadValidations,
+		onSubmit: async () => {
+			console.log(values);
+		}
+	});
 
 	console.log(file);
 
@@ -25,24 +47,38 @@ function AddProduct() {
 						<div className={style.title}>Ürün Detayları</div>
 						<div className={style.nameGroup}>
 							<label>Ürün Adı</label>
-							<input type="text" placeholder="Örnek: Iphone 12 Pro Max"/>
+							<input 
+								type="text" 
+								name="name" 
+								placeholder="Örnek: Iphone 12 Pro Max" 
+								onChange={handleChange} 
+								value={values.name} 
+								onBlur={handleBlur}/>
+							{touched.name && errors.name && <div className={style.error}>{errors.name}</div>}
 						</div>
 						<div className={style.descriptionGroup}>
 							<label>Açıklama</label>
-							<textarea type="text" placeholder="Ürün açıklaması giriniz" />
+							<textarea 
+								type="text" 
+								placeholder="Ürün açıklaması giriniz" 
+								name="description" 
+								onChange={handleChange}
+								value={values.description}
+								onBlur={handleBlur}/>
 						</div>
 						<div className={style.topGroup}>
 							<div className={style.categoryGroup}>
 								<label>Kategori</label>
-								<select>
+								<select name="category" onChange={handleChange} onBlur={handleBlur} required>
 									<option value="" disabled selected hidden>Kategori seç</option>
-									<option>Telefon</option>
-									<option>Bilgisayar</option>
-									<option>Elektronik</option>
-									<option>Kozmetik</option>
-									<option>Giyim</option>
-									<option>Ev</option>
-									<option>Dekorasyon</option>
+									{
+										categories.map((category) => (
+											<option key={category.id} value={category.name}>{category.name}</option>
+										))
+									}
+									{
+										touched.category && errors.category && <div className={style.error}>{errors.category}</div>
+									}
 								</select>
 							</div>
 							<div className={style.brandGroup}>
@@ -132,6 +168,7 @@ function AddProduct() {
 
 					</div>
 				</form>	
+				<button onClick={handleSubmit}> Kaydet</button>
 			</div>
 		</div>
 	);
