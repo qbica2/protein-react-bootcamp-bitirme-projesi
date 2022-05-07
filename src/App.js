@@ -4,15 +4,18 @@ import Rooter from "./rooter/rooter";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProductsProvider } from "./contexts/ProductsContext";
 import { OfferProvider } from "./contexts/OfferContext";
+import { BuyModalProvider } from "./contexts/BuyModalContext";
 
 function App() {
 	return (
 		<AuthProvider>
-			<ProductsProvider>
-				<OfferProvider>
-					<Rooter />
-				</OfferProvider>
-			</ProductsProvider>
+			<BuyModalProvider>
+				<ProductsProvider>
+					<OfferProvider>
+						<Rooter />
+					</OfferProvider>
+				</ProductsProvider>
+			</BuyModalProvider>
 		</AuthProvider>
 	);	
 }

@@ -30,3 +30,18 @@ export const deleteOffer = async (id) =>{
 		return err.response;
 	}
 };
+
+export const getOffers = async (id) => {
+	try {
+		const response = await axios.get(requests.offers + "?users_permissions_user=" + id, {
+			headers: {
+				Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+			}
+		});
+		console.log("getOffers response", response);
+		return response;
+	} catch (err) {
+		console.log("getOffers hatası",err);
+		return err.response;
+	}
+};

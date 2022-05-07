@@ -1,27 +1,34 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 import style from "../styles/detail.module.scss";
 import Navigation from "../constants/Navigation";
 
 import ProductsContext from "../contexts/ProductsContext";
 import OfferContext from "../contexts/OfferContext";
+import BuyModalContext from "../contexts/BuyModalContext";
 import BuyModal from "../components/BuyModal";
 import OfferModal from "../components/OfferModal";
 
 function Detail() {
 
-	const { detail, buyProduct } = useContext(ProductsContext);
+	const { detail } = useContext(ProductsContext);
 	const { submittedOffers,cancelOffer } = useContext(OfferContext);
-	
-	const photoBaseUrl = "https://bootcamp.akbolat.net/";
-	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
-	const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
+	const { isBuyModalOpen, handleBuyModalOpen, setProductId, isBuy, setIsBuy } = useContext(BuyModalContext);
 
+	const photoBaseUrl = "https://bootcamp.akbolat.net/";
+
+	const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [offer, setOffer] = useState({});
-	const [isBuy, setIsBuy] = useState(false);
 	
+	useEffect(() => {
+		if(detail.isSold){
+			setIsBuy(true);
+		} else {
+			setIsBuy(false);
+		}
+	},[detail]);
 
 	useEffect(() => {
 		setOffer({});
@@ -41,19 +48,10 @@ function Detail() {
 		});
 	};
 
-	const handleBuyProduct = async () => {
-		const isSold = await buyProduct(detail.id);
-		if(isSold){
-			toast.success("Satın Alındı");
-			setIsBuyModalOpen(false);
-			setIsBuy(true);
-		}else{
-			toast.error("Satın Alınamadı");
-		}
+	const handleOpenBuyModal = () => {
+		handleBuyModalOpen();
+		setProductId(detail.id);
 	};
-
-	
-
 
 	return (
 		<div className={style.detail}>
@@ -101,7 +99,7 @@ function Detail() {
 							(detail.isSold || isBuy) && <span>Bu ürün Satışta Değil </span>
 						}
 						{
-							!detail.isSold && !isBuy && <button className={style.buy} onClick={()=>setIsBuyModalOpen(true)}>Satın Al</button>
+							!detail.isSold && !isBuy && <button className={style.buy} onClick={handleOpenBuyModal}>Satın Al</button>
 						}
 						{
 							!detail.isSold && detail.isOfferable && !offer.offerPrice && !isBuy && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button> 
@@ -119,7 +117,7 @@ function Detail() {
 				</div>
 			</div>
 			{
-				isBuyModalOpen && <BuyModal closeModal={()=>setIsBuyModalOpen(false)} buyProduct={handleBuyProduct}/>
+				isBuyModalOpen && <BuyModal />
 			}
 			{
 				isOfferModalOpen && <OfferModal closeModal={()=>setIsOfferModalOpen(false)} src={photoBaseUrl+detail?.image?.url} product={detail} price={price} setPrice={setPrice}/>

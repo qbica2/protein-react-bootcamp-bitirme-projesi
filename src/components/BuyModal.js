@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import style from "../styles/buymodal.module.scss";
+import BuyModalContext from "../contexts/BuyModalContext";
 
-function BuyModal( { closeModal, buyProduct}) {
-
+function BuyModal() {
+	const { handleBuySomething, handleBuyModalClose } = useContext(BuyModalContext);
 	return (
 		<div className={style.modal}>
 			<div className={style.content}>
@@ -14,17 +14,13 @@ function BuyModal( { closeModal, buyProduct}) {
 					Satın Almak istiyor musunuz?
 				</div>
 				<div className={style.buttonCon}>
-					<button onClick={closeModal} className={style.cancel}>Vazgeç</button>
-					<button onClick={buyProduct} className={style.confirm}>Satın Al</button>
+					<button onClick={handleBuyModalClose} className={style.cancel}>Vazgeç</button>
+					<button onClick={handleBuySomething} className={style.confirm}>Satın Al</button>
 				</div>
 			</div>
 		</div>
 	);
 }
 
-BuyModal.propTypes = {
-	closeModal: PropTypes.func.isRequired,
-	buyProduct: PropTypes.func.isRequired,
-};
 
 export default BuyModal;

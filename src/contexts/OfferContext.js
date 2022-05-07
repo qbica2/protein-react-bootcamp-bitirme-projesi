@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState } from "react";
 
-import { submitOffer, deleteOffer } from "../services/offerService";
+import { submitOffer, deleteOffer, getOffers } from "../services/offerService";
 
 const OfferContext = createContext();
 
@@ -29,11 +29,23 @@ export const OfferProvider = ({ children }) => {
 		return false;
 	};
 
+	const handleGetOffers = async (id) => {
+		const response = await getOffers(id);
+		if (response.status === 200) {
+			setSubmittedOffers(response.data);
+			console.log("here");
+			console.log("handleGetOffers response", response);
+			return true;
+		}
+		return false;
+	};
+
 
 	const values={
 		handleOffer,
 		submittedOffers,
-		cancelOffer
+		cancelOffer,
+		handleGetOffers
 	};
 
 	return <OfferContext.Provider value={values}>{children}</OfferContext.Provider>;

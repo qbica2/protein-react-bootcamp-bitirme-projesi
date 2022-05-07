@@ -3,6 +3,8 @@
 	height: 104px;
 	border: 1px solid #F2F2F2;
 	border-radius: 8px;
+	display: flex;
+	justify-content: space-between;
 	.left{
 		display: flex;
 		align-items: center;
@@ -11,10 +13,19 @@
 			width: 78px;
 			height: 84px;
 			border-radius: 8px;
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				border-radius: 8px;
+			}
 		}
 		.info{
+			height: 100%;
 			display: flex;
 			flex-direction: column;
+			justify-content: center;
+			gap: 10px;
 			.title{
 				color: #555555;
 				font-size: 18px;
@@ -39,6 +50,33 @@
 		}
 	}
 	.right{
-
+		margin-right: 10px;
+		font-size: 15px;
+		line-height: 23px;
+		display: flex;
+		align-items: center;
+		justify-content:center;
+		gap: 10px;
+		button{
+			width: 86px;
+			height: 30px;
+			background-color: #4B9CE2 ;
+			border-radius: 8px;
+			color: #FFF;
+			border: none;
+			cursor: pointer;
+		}
+		.confirmed{
+			color: #4B9CE2;
+		}
+		.declined{
+			color: #F77474;
+		}
+		.pending{
+			color: #ffcc00;
+		}
+		.sold{
+			color: #46AF32;
+		}
 	}
 }
