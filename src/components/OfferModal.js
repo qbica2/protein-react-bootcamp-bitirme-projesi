@@ -90,7 +90,7 @@ function OfferModal({ closeModal, src, product, price, setPrice}) {
 						Teklif Ver
 					</div>
 					<div className={style.close} onClick={closeModal}>
-						<CloseIcon />
+						<CloseIcon color="#525252"/>
 					</div>
 				</header>
 				<div className={style.product}>

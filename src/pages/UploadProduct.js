@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState} from "react";
+import ImageUploading from "react-images-uploading";
 
 import style from "../styles/upload.module.scss";
 import Navigation from "../constants/Navigation";
 import UploadIcon from "../constants/icons/UploadIcon";
+import CloseIcon from "../constants/icons/CloseIcon";
 
 function AddProduct() {
+	
+	const [file, setFile] = useState([]);
+
+	const onChange = (imageList) => {	
+		setFile(imageList);
+	};
+
+	console.log(file);
+
 	return (
 		<div className={style.container}>
 			<Navigation/>
@@ -57,7 +68,8 @@ function AddProduct() {
 							<div className={style.usingGroup}>
 								<label>Kullanım Durumu</label>
 								<select >
-									<option value="" disabled selected hidden>Kullanım durumu seç</option>
+									<option value="" disabled defaultValue hidden>Kullanım durumu seç</option>
+									
 									<option>Çok kullanılan</option>
 									<option>Kullanılıyor</option>
 									<option>Çok kullanılmıyor</option>
@@ -78,13 +90,46 @@ function AddProduct() {
 					</div>
 					<div className={style.right}>
 						<div className={style.title}>Ürün Görseli</div>
-						<div className={style.imageGroup}>
-							<UploadIcon />
-							<span>Sürükleyip bırakarak yükle veya</span>
-							<input type="file" />
-							<input type="button" value="Resim Seç" />
-							<p>PNG ve JPEG Dosya boyutu: max. 100kb</p>
-						</div>
+
+						<ImageUploading
+							acceptType={["png", "jpg", "jpeg"]}
+							value={file}
+							onChange={onChange}
+							maxFileSize={400000}
+							dataURLKey="data_url">
+							{({
+								imageList,
+								onImageUpload,
+								onImageRemove,
+								dragProps,
+								errors
+							}) => (
+								<> 
+									{
+										imageList.length === 0  && 
+										<div className={style.imageGroup} onClick={onImageUpload} {...dragProps}>
+											<UploadIcon />
+											<span>Sürükleyip bırakarak yükle veya</span>
+											<input type="button" value="Resim Seç" />
+											<p>PNG ve JPEG Dosya boyutu: max. 100kb</p>
+										</div> 
+									}
+									{
+										imageList.length === 1 && 	imageList.map((image, index) => (
+											<div key={index} className={style.image}>
+												<img src={image.data_url} alt=""/>
+												<div className={style.remove} onClick={() => onImageRemove(index)}><CloseIcon color="#fff"/></div>
+											</div>))
+									}
+									{
+										errors ? <span>{errors}</span> : null
+									}
+								</>
+								
+							)}
+
+						</ImageUploading>
+
 					</div>
 				</form>	
 			</div>
