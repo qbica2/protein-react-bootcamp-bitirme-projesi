@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById } from "../services/productsService";
+import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById, getMyProducts } from "../services/productsService";
 
 const ProductsContext = createContext();
 
@@ -16,6 +16,7 @@ export const ProductsProvider = ({ children }) => {
 	const [page, setPage] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
 	const [detail, setDetail] = useState({});
+	const [myProducts, setMyProducts] = useState([]);
 
 	useEffect(() => {
 		const getCategories = async () => {
@@ -88,6 +89,16 @@ export const ProductsProvider = ({ children }) => {
 		
 	};
 
+	const handleGetMyProducts = async (id) => {
+
+		const response = await getMyProducts(id);
+		console.log("getMyProducts response", response);
+		if(response.status === 200){
+			setMyProducts(response.data);
+		}
+	};
+
+
 
 
 	const values={
@@ -101,6 +112,8 @@ export const ProductsProvider = ({ children }) => {
 		hasMore,
 		getProduct,
 		detail,
+		handleGetMyProducts,
+		myProducts
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

@@ -24,23 +24,42 @@ function Offer({ image, title, offeredPrice, status, tab, productId }) {
 					</div>
 				</div>
 			</div>
-			<div className={style.right}>
-				{
-					isBuy && status && <div className={style.sold}>Satın Alındı</div>
-				}
-				{
-					!isBuy && status && <button onClick={()=>handleBuyModalOpen(productId)}>Satın Al</button>
-				}
-				{
-					status === null && <div className={style.pending}> Bekliyor</div> 
-				}
-				{
-					!isBuy && status !==null && status && <div className={style.confirmed}> Onaylandı</div>
-				}
-				{
-					status !==null && !status && <div className={style.declined}>Reddedildi</div>
-				}
-			</div>
+			{
+				tab === 0 && (
+					<div className={style.right}>
+						{
+							status === null && <div className={style.buttons}> <button className={style.accept}>Onayla</button> <button className={style.cancel}>Reddet</button></div> 
+						}
+						{
+							status !==null && status && <div className={style.confirmed}> Onaylandı</div>
+						}
+						{
+							status !==null && !status && <div className={style.declined}>Reddedildi</div>
+						}
+					</div>
+				)
+			}
+			{
+				tab === 1 && (
+					<div className={style.right}>
+						{
+							isBuy && status && <div className={style.sold}>Satın Alındı</div>
+						}
+						{
+							!isBuy && status && <button onClick={()=>handleBuyModalOpen(productId)}>Satın Al</button>
+						}
+						{
+							status === null && <div className={style.pending}> Bekliyor</div> 
+						}
+						{
+							!isBuy && status !==null && status && <div className={style.confirmed}> Onaylandı</div>
+						}
+						{
+							status !==null && !status && <div className={style.declined}>Reddedildi</div>
+						}
+					</div>
+				)
+			}
 		</div>
 	);
 }

@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import AuthContext from "../contexts/AuthContext";
 import OfferContext from "../contexts/OfferContext";
 import BuyModalContext from "../contexts/BuyModalContext";
+import ProductsContext from "../contexts/ProductsContext";
 import style from "../styles/account.module.scss";
 import Navigation from "../constants/Navigation";
 import AccountIcon from "../constants/icons/AccountIcon";
@@ -15,10 +16,11 @@ function Account() {
 	const { auth } = useContext(AuthContext);
 	const { handleGetOffers, submittedOffers } = useContext(OfferContext);
 	const { isBuyModalOpen } = useContext(BuyModalContext);
+	const { handleGetMyProducts, myProducts } = useContext(ProductsContext);
 	const navigate = useNavigate();
 
 	const [selectedTab,setSelectedTab] = useState(0);
-
+	console.log(myProducts);
 	useEffect(() => {
 		if(!auth.isAuthenticated) {
 			navigate("/login");
@@ -28,6 +30,7 @@ function Account() {
 	useEffect(() => {
 		if(selectedTab === 0){
 			console.log("selectedTab === 0");
+			handleGetMyProducts(auth.id);
 		}else if(selectedTab === 1){
 			console.log("selectedTab === 1");
 			handleGetOffers(auth.id);
@@ -59,6 +62,11 @@ function Account() {
 					</div>
 				</div>
 				<div className={style.offerList}>
+					{
+						selectedTab === 0 && myProducts.map((item)=>(
+							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} status={item.isStatus} tab={selectedTab} productId={item.product?.id}/>
+						))
+					}
 					{
 						selectedTab === 1 && submittedOffers.map((item) =>(
 							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} status={item.isStatus} tab={selectedTab} productId={item.product?.id}/>

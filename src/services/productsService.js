@@ -82,3 +82,18 @@ export const buyProductById = (id)	=> {
 		return err.response;
 	}
 };
+
+export const getMyProducts = async (id) => {
+	try {
+		const response = await axios.get(`${requests.products}?users_permissions_user=${id}`, {
+			headers: {
+				Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+			}
+		});
+		console.log("getMyProducts response", response);
+		return response;
+	} catch (err) {
+		console.log("getMyProducts hatası",err);
+		return err.response;
+	}
+};

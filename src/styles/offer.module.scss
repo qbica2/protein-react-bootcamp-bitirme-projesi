@@ -57,6 +57,22 @@
 		align-items: center;
 		justify-content:center;
 		gap: 10px;
+		.buttons{
+			button{
+				width: 86px;
+				height: 30px;
+				border-radius: 8px;
+				border: none;
+				cursor: pointer;
+				color: #FFF;
+			}
+			.accept{
+				background-color: #4B9CE2;
+			}
+			.cancel{
+				background-color: #F77474;
+			}
+		}
 		button{
 			width: 86px;
 			height: 30px;
