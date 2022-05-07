@@ -29,7 +29,7 @@ function Landing() {
 					{
 						auth.isAuthenticated ? 
 							<div className={style.links}>
-								<a onClick={()=>navigate("/addproduct")}> <AddIcon width={13} height={13} color="#4B9CE2"/><span>Ürün Ekle</span></a>
+								<a onClick={()=>navigate("/upload")}> <AddIcon width={13} height={13} color="#4B9CE2"/><span>Ürün Ekle</span></a>
 								<a onClick={()=>navigate("/account")}> <AvatarIcon width={13} height={13} color="#4B9CE2"/> <span>Hesabım</span></a>
 							</div>
 							:

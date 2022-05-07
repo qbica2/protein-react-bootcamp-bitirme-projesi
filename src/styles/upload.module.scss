@@ -1,0 +1,234 @@
+.container{
+	width: 100%;
+	height: 100vh;
+	background-color: #F2F2F2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.content{
+		margin-top: 20px;
+		width: 1480px;
+		height: 812px;
+		background-color: #fff;
+		border-radius: 8px;
+		form{
+			margin: 30px;
+			display: flex;
+			.left{
+				padding-right: 30px;
+				display: flex;
+				flex-direction: column;
+				gap: 25px;
+				border-right: 1px solid #f2f2f2;
+				.title{
+					color: #525252;
+					font-size: 25px;
+					font-weight: bold;
+					line-height: 23px;
+				}
+				label{
+					color: #525252;
+					font-size: 15px;
+					line-height: 20px;
+				}
+				input{
+					width: 730px;
+					background-color: #F4F4F4;
+					border-radius: 8px;
+					border: none;
+					padding-left: 15px;
+					color: #99A0A7;
+					font-size: 16px;
+					line-height: 22px;
+					&::placeholder{
+						color: #99A0A7;
+					}
+				}
+				select{
+					width: 353px;
+					height: 45px;
+					background-color: #F4F4F4 ;
+					border-radius: 8px;
+					border: none;
+					padding: 0 15px;
+					color: #99A0A7;
+					font-size: 16px;
+					line-height: 22px;
+					option{
+						color: #3E3E3E;
+						margin: 15px;
+						&:checked{
+							color: #4B9CE2;
+						}
+					}
+					&:focus{
+						background-color: #FFF ;
+						box-shadow: 0px 3px 12px #1E36482E;
+						border-radius: 8px;
+						max-height: 228px;
+						overflow: hidden;
+						overflow-y: scroll;
+			
+					}
+				}
+				.nameGroup{
+					display: flex;
+					flex-direction: column;
+					input{
+						height: 45px;
+					}
+				}
+				.descriptionGroup{
+					display: flex;
+					flex-direction: column;
+					textarea{
+						height: 92px;
+						width: 730px;
+						background-color: #F4F4F4;
+						border-radius: 8px;
+						border: none;
+						padding: 12px 15px;
+						color: #99A0A7;
+						font-size: 16px;
+						line-height: 22px;
+						resize: none;
+						&::placeholder{
+							color: #99A0A7;
+						}
+					}
+				}
+				.topGroup{
+					width: 730px;
+					display: flex;
+					justify-content: space-between;
+					.categoryGroup{
+						display: flex;
+						flex-direction: column;
+					}
+					.brandGroup{
+						display: flex;
+						flex-direction: column;
+					}
+				}
+				.bottomGroup{
+					width: 730px;
+					display: flex;
+					justify-content: space-between;
+					.colorGroup{
+						display: flex;
+						flex-direction: column;
+					}
+					.usingGroup{
+						display: flex;
+						flex-direction: column;
+					}
+				}
+				.priceGroup{
+					display: flex;
+					flex-direction: column;
+					input{
+						width: 236px;
+					height: 45px;
+					}
+				}
+				.offerGroup{
+					width: 236px;
+					display: flex;
+					justify-content: space-between;
+					.switch{
+						position: relative;
+  						display: inline-block;
+						width: 44px;
+						height: 24px;
+						background: #EBEBEB ;
+						border-radius: 12px;
+						
+					
+						input{
+							width: 0;
+							height: 0;
+							opacity: 0;
+							&:checked + .slider{
+								background: #4B9CE2;	
+								}
+							&:checked + .slider:before{
+								-webkit-transform: translateX(20px);
+								-ms-transform: translateX(20px);
+								transform: translateX(20px);
+							}
+							&:focus + .slider{
+								box-shadow: 0px 3px 12px #1E36482E;
+							}
+							
+						}
+						.slider{
+							position: absolute;
+							cursor: pointer;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							background-color: #ccc;
+							-webkit-transition: .4s;
+							transition: .4s;
+							border-radius: 34px;
+							&:before {
+								position: absolute;
+								content: "";
+								width: 20px;
+								height: 20px;
+								left: 2px;
+								bottom: 2px;
+								background-color: white;
+								-webkit-transition: .4s;
+								transition: .4s;
+								border-radius: 50%;
+							  }
+						}
+					}
+				}
+			}
+			.right{
+				padding-left: 30px;
+				.title{
+					color: #525252;
+					font-size: 25px;
+					font-weight: bold;
+					line-height: 23px;
+				}
+				.imageGroup{
+					margin-top: 25px;
+					display: flex;
+					flex-direction: column;
+					width: 595px;
+					height: 164px;
+					border: 1px dashed #B1B1B1;
+					border-radius: 10px;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 10px;
+					justify-content: center;
+					cursor: pointer;
+					input[type=file]{
+						display: none;
+						width: 100%;
+						height: 100%;
+					}
+					input[type=button]{
+						width: 122px;
+						height: 30px;
+						background: #F4F4F4;
+						border-radius: 15px;
+						border:none;
+					}
+					p{
+						color: #B1B1B1;
+						font-size: 12px;
+						line-height: 14px;
+					}
+				}
+			}
+		}
+	}
+}
