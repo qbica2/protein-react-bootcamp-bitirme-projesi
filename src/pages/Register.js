@@ -72,7 +72,7 @@ function Register() {
 				/>
 				<button type="submit" onClick={handleSubmit} disabled={registerLoading}>Üye Ol</button>
 			</form>
-			<span>Hesabın var mı ? <a>Giriş Yap</a></span>
+			<span>Hesabın var mı ? <a onClick={()=>navigate("/login")}>Giriş Yap</a></span>
 		</LoginRegisterLayout>
 	);
 }
