@@ -28,8 +28,9 @@ export const BuyModalProvider = ({ children }) => {
 	};
 
 
-	const handleBuyModalOpen = () => {
+	const handleBuyModalOpen = (id) => {
 		setIsBuyModalOpen(true);
+		setProductId(id);
 	};
 
 	const handleBuyModalClose = () => {

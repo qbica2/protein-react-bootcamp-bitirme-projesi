@@ -14,7 +14,7 @@ function Detail() {
 
 	const { detail } = useContext(ProductsContext);
 	const { submittedOffers,cancelOffer } = useContext(OfferContext);
-	const { isBuyModalOpen, handleBuyModalOpen, setProductId, isBuy, setIsBuy } = useContext(BuyModalContext);
+	const { isBuyModalOpen, handleBuyModalOpen, isBuy, setIsBuy } = useContext(BuyModalContext);
 
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
 
@@ -48,10 +48,10 @@ function Detail() {
 		});
 	};
 
-	const handleOpenBuyModal = () => {
-		handleBuyModalOpen();
-		setProductId(detail.id);
-	};
+	// const handleOpenBuyModal = () => {
+	// 	handleBuyModalOpen();
+	// 	setProductId(detail.id);
+	// };
 
 	return (
 		<div className={style.detail}>
@@ -99,7 +99,7 @@ function Detail() {
 							(detail.isSold || isBuy) && <span>Bu ürün Satışta Değil </span>
 						}
 						{
-							!detail.isSold && !isBuy && <button className={style.buy} onClick={handleOpenBuyModal}>Satın Al</button>
+							!detail.isSold && !isBuy && <button className={style.buy} onClick={()=>handleBuyModalOpen(detail.id)}>Satın Al</button>
 						}
 						{
 							!detail.isSold && detail.isOfferable && !offer.offerPrice && !isBuy && <button onClick={()=>setIsOfferModalOpen(true)} className={style.offer}>Teklif Ver</button> 

@@ -61,7 +61,7 @@ function Account() {
 				<div className={style.offerList}>
 					{
 						selectedTab === 1 && submittedOffers.map((item) =>(
-							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} price={item.product?.price} status={item.isStatus} tab={selectedTab} productId={item.product?.id}/>
+							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} status={item.isStatus} tab={selectedTab} productId={item.product?.id}/>
 						))	
 					}
 				</div>

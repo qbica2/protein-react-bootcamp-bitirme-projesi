@@ -3,24 +3,19 @@ import PropTypes from "prop-types";
 import style from "../styles/offer.module.scss";
 import BuyModalContext from "../contexts/BuyModalContext";
 
-// eslint-disable-next-line no-unused-vars
-function Offer({ image, title, price, offeredPrice, status, tab, productId }) {
 
+function Offer({ image, title, offeredPrice, status, tab, productId }) {
 
-	const { handleBuyModalOpen, setProductId, isBuy } = useContext(BuyModalContext);
+	const { handleBuyModalOpen, isBuy } = useContext(BuyModalContext);
 
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
 
-	const handleOpenModal = () => {
-		handleBuyModalOpen();
-		setProductId(productId);
-	};
 
 	return (
 		<div className={style.container}>
 			<div className={style.left}>
 				<div className={style.image}>
-					<img src={photoBaseUrl + image} alt="product" />
+					<img src={image ? photoBaseUrl + image : "resimsiz.jpg"}  alt="product" />
 				</div>
 				<div className={style.info}>
 					<div className={style.title}>{title}</div>
@@ -34,7 +29,7 @@ function Offer({ image, title, price, offeredPrice, status, tab, productId }) {
 					isBuy && status && <div className={style.sold}>Satın Alındı</div>
 				}
 				{
-					!isBuy && status && <button onClick={handleOpenModal}>Satın Al</button>
+					!isBuy && status && <button onClick={()=>handleBuyModalOpen(productId)}>Satın Al</button>
 				}
 				{
 					status === null && <div className={style.pending}> Bekliyor</div> 
@@ -53,7 +48,6 @@ function Offer({ image, title, price, offeredPrice, status, tab, productId }) {
 Offer.propTypes = {
 	image: PropTypes.string,
 	title: PropTypes.string,
-	price: PropTypes.number,
 	offeredPrice: PropTypes.number,
 	status: PropTypes.bool,
 	tab: PropTypes.number,
