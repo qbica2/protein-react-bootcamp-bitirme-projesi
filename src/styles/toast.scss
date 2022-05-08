@@ -79,10 +79,10 @@
   
   @media only screen and (max-width : 480px) {
 	.Toastify__toast-container {
-	  width: 100vw;
+	width: 355px;
 	  padding: 0;
 	  left: 0;
-	  margin: 0;
+	  margin: 10px;
 	}
 	.Toastify__toast-container--top-left, .Toastify__toast-container--top-center, .Toastify__toast-container--top-right {
 	  top: 0;
