@@ -30,3 +30,26 @@ nav{
 		}
 	}
 }
+@media screen and (max-width: 1500px) {
+	nav{
+		.navbar{
+			width: 100%;
+			padding: 0 10px;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+
+	nav{
+		.navbar{
+			.links{
+				a{
+				.mini{
+					display: none;
+					}
+				}
+			}
+		}
+	}
+}

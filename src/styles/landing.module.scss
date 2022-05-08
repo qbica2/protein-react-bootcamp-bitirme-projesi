@@ -40,6 +40,7 @@
 		width: 1480px;
 		height: 100%;
 		.banner{
+			margin-top: 20px;
 			width: 100%;
 			height: 430px;
 			border-radius: 8px;
@@ -47,6 +48,39 @@
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
 			background-position: center center;
+		}
+	}
+}
+
+@media screen and (max-width: 1500px) {
+	.landing{
+		nav{
+			.navbar{
+				width: 100%;
+				padding: 0 10px;
+			}
+		}
+		.container{
+			width: 100%;
+			.banner{
+
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.landing{
+		nav{
+			.navbar{
+				.links{
+					a{
+					.mini{
+						display: none;
+					}
+					}
+				}
+			}
 		}
 	}
 }
