@@ -2,6 +2,7 @@ import React, {useState, useContext , useEffect} from "react";
 import ImageUploading from "react-images-uploading";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import ProductsContext from "../contexts/ProductsContext";
 import AuthContext from "../contexts/AuthContext";
 import style from "../styles/upload.module.scss";
@@ -17,15 +18,18 @@ function AddProduct() {
 
 	const [file, setFile] = useState([]);
 	const [image, setImage] = useState([]);
-	// const onUpload = (e) => {
-	// 	console.log(e.target.files[0]);
-	// 	setFile(e.target.files[0]);
-	// };
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if(!auth.isAuthenticated) {
+			navigate("/login");
+		}	
+	},[]);
 
 
 	const onChange = (imageList) => {
 		console.log("onChange", imageList);
-		// setFile(imageList[0].file);
 		setFile(imageList);
 		setImage(imageList[0].file);
 	};

@@ -1,4 +1,4 @@
-.container{
+.container {
 	width: 1413px;
 	height: 104px;
 	border: 1px solid #F2F2F2;
@@ -59,41 +59,32 @@
 		justify-content:center;
 		gap: 10px;
 		.buttons{
+			display: flex;
+			gap: 10px;
 			button{
 				width: 86px;
 				height: 30px;
 				border-radius: 8px;
+				color: #FFFFFF;
+				font-size: 15px;
+				line-height: 23px;
 				border: none;
 				cursor: pointer;
-				color: #FFF;
 			}
-			.accept{
-				background-color: #4B9CE2;
+			.confirm{
+				background: #4B9CE2;
 			}
 			.cancel{
-				background-color: #F77474;
+				background: #F77474;
 			}
-		}
-		button{
-			width: 86px;
-			height: 30px;
-			background-color: #4B9CE2 ;
-			border-radius: 8px;
-			color: #FFF;
-			border: none;
-			cursor: pointer;
+			
 		}
 		.confirmed{
 			color: #4B9CE2;
 		}
 		.declined{
-			color: #F77474;
-		}
-		.pending{
-			color: #ffcc00;
-		}
-		.sold{
-			color: #46AF32;
+			color:#F77474;
 		}
 	}
+
 }

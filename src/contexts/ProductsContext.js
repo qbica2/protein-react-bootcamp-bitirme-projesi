@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById, getMyProducts, getAllBrands, getAllColors, getAllUsingStatus, uploadProduct } from "../services/productsService";
+import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById, getMyProducts, getAllBrands, getAllColors, getAllUsingStatus, uploadProduct , updateMyOffer } from "../services/productsService";
 
 const ProductsContext = createContext();
 
@@ -20,6 +20,7 @@ export const ProductsProvider = ({ children }) => {
 	const [brands, setBrands] = useState([]);
 	const [colors, setColors] = useState([]);
 	const [usingStatus, setUsingStatus] = useState([]);
+	const [myOffers, setMyOffers] = useState([]);
 
 	useEffect(() => {
 		const getCategories = async () => {
@@ -83,6 +84,12 @@ export const ProductsProvider = ({ children }) => {
 		getCount();
 	}, [page]);
 
+	useEffect(() => {
+		myProducts.map((item) =>
+			setMyOffers([...myOffers, ...item.offers])
+		);
+	}, [myProducts]);
+		
 	const getProduct = async (id) => {
 		const response = await getProductById(id);
 		console.log("getProductById response", response);
@@ -133,7 +140,15 @@ export const ProductsProvider = ({ children }) => {
 		}
 		return false;
 	};
-	
+
+	const handleUpdateMyOffer = async (id, offer) => {
+		const response = await updateMyOffer(id, offer);
+		console.log("updateMyOffer response", response);
+		if(response.status === 200){
+			return true;
+		}
+		return false;
+	};	
 
 
 
@@ -156,7 +171,9 @@ export const ProductsProvider = ({ children }) => {
 		getColors,
 		usingStatus,
 		getUsingStatus,
-		handleUploadProduct
+		handleUploadProduct,
+		myOffers,
+		handleUpdateMyOffer
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

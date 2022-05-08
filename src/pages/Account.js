@@ -9,6 +9,7 @@ import style from "../styles/account.module.scss";
 import Navigation from "../constants/Navigation";
 import AccountIcon from "../constants/icons/AccountIcon";
 import Offer from "../components/Offer";
+import MyProduct from "../components/MyProduct";
 import BuyModal from "../components/BuyModal";
 
 function Account() {
@@ -16,7 +17,7 @@ function Account() {
 	const { auth } = useContext(AuthContext);
 	const { handleGetOffers, submittedOffers } = useContext(OfferContext);
 	const { isBuyModalOpen } = useContext(BuyModalContext);
-	const { handleGetMyProducts, myProducts } = useContext(ProductsContext);
+	const { handleGetMyProducts, myProducts  } = useContext(ProductsContext);
 	const navigate = useNavigate();
 
 	const [selectedTab,setSelectedTab] = useState(0);
@@ -64,12 +65,14 @@ function Account() {
 				<div className={style.offerList}>
 					{
 						selectedTab === 0 && myProducts.map((item)=>(
-							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} status={item.isStatus} tab={selectedTab} productId={item.product?.id}/>
+							item.offers.map((offer)=>(
+								<MyProduct key={offer.id} price={offer.offerPrice} image={item.image?.url} title={item.name} status={offer.isStatus} productId={item.id} authId={auth.id} offerId={offer.id} /> 
+							))
 						))
 					}
 					{
 						selectedTab === 1 && submittedOffers.map((item) =>(
-							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} status={item.isStatus} tab={selectedTab} productId={item.product?.id}/>
+							<Offer key={item.id} image={item.product?.image?.url} title={item.product?.name} offeredPrice={item.offerPrice} status={item.isStatus} productId={item.product?.id}/>
 						))	
 					}
 				</div>

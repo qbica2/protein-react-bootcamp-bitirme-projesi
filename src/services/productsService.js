@@ -151,3 +151,19 @@ export const uploadProduct = async (formData) => {
 	}
 
 };
+
+export const updateMyOffer = async (id,data) => {
+	try {
+		const response = await axios.put(requests.offers + "/" + id, data, {
+			headers: {
+				Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+			}
+		});
+		console.log("updateOffer response", response);
+		return response;
+	} catch (err) {
+		console.log("updateOffer hatası",err);
+		return err.response;
+	} 
+
+};
