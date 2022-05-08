@@ -55,6 +55,12 @@ function AddProduct() {
 		},
 		validationSchema: uploadValidations,
 		onSubmit: async (values) => {
+
+			if(file.length === 0){
+				toast.error("Lütfen bir resim seçiniz.");
+				return;
+			}
+
 			console.log("values", values);
 			console.log("image", image);
 			const data = {
@@ -236,7 +242,13 @@ function AddProduct() {
 											</div>))
 									}
 									{
-										errors ? <span>{errors}</span> : null
+										errors && 
+										<div>
+											{errors.maxNumber && <span className={style.error}>Number of selected images exceed maxNumber</span>}
+											{errors.acceptType && <span className={style.error}>Desteklenmeyen dosya tipi </span>}
+											{errors.maxFileSize && <span className={style.error}>Dosya boyutu en fazla 400kb olmalı.</span>}
+											{errors.resolution && <span className={style.error}>Selected file is not match your desired resolution</span>}
+										</div>
 									}
 								</>
 								

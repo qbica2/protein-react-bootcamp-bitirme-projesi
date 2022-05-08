@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 		} else if (response.status === 400){
 
 			console.log("400 hatası");
-			toast.error(response.data.message[0].messages[0].message);
+			toast.error("Email  kullanılıyor");
 			setRegisterLoading(false);
 			return false;
 
@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }) => {
 		} else if (response.status === 400){
 
 			console.log("400 hatası");
-			toast.error(response.data.message[0].messages[0].message);
+			toast.error("Email ya da şifre hatalı");
 			setLoginLoading(false);
 			return false;
 

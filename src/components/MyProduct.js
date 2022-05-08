@@ -67,10 +67,10 @@ function MyProduct({ price, image , title, status, productId, authId , offerId }
 					</div>
 				}
 				{
-					status === null && isConfirmed && <div className={style.confirmed}>Onaylandı</div>
+					status === null && isConfirmed!==null && isConfirmed=== true && <div className={style.confirmed}>Onaylandı</div>
 				}
 				{
-					status === null && !isConfirmed && <div className={style.declined}>Reddedildi</div>
+					status === null && isConfirmed!==null && isConfirmed===false && <div className={style.declined}>Reddedildi</div>
 				}
 				{
 					status === true && <div className={style.confirmed}>Onaylandı</div>
