@@ -97,3 +97,57 @@ export const getMyProducts = async (id) => {
 		return err.response;
 	}
 };
+
+export const getAllBrands = async () => {
+	try {
+		const response = await axios.get(requests.brands);
+		console.log("getAllBrands response", response);
+		return response;
+	} catch (err) {
+		console.log("getAllBrands hatası",err);
+		return err.response;
+	}
+};
+
+export const getAllColors = async () => {
+	try {
+		const response = await axios.get(requests.color);
+		console.log("getAllColors response", response);
+		return response;
+	} catch (err) {
+		console.log("getAllColors hatası",err);
+		return err.response;
+	} 
+};
+
+export const getAllUsingStatus = async () => {
+	try {
+		const response = await axios.get(requests.status);
+		console.log("getAllUsingStatus response", response);
+		return response;
+	} catch (err) {
+		console.log("getAllUsingStatus hatası",err);
+		return err.response;
+	}
+};
+
+export const uploadProduct = async (formData) => {
+	
+	console.log("formData", formData);
+
+	try {
+		const response = await axios.post(requests.products, formData,{
+
+			headers: {
+				Authorization: `Bearer ${document.cookie.split("=")[1]}`,
+			},
+		
+		});
+		console.log("uploadProduct response", response);
+		return response;
+	} catch (err) {
+		console.log("uploadProduct hatası",err);
+		return err.response;
+	}
+
+};

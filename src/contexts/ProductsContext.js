@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById, getMyProducts } from "../services/productsService";
+import { getAllCategories, getAllProducts, getProductsByCategory, getProductsCount, getProductById, getMyProducts, getAllBrands, getAllColors, getAllUsingStatus, uploadProduct } from "../services/productsService";
 
 const ProductsContext = createContext();
 
@@ -17,6 +17,9 @@ export const ProductsProvider = ({ children }) => {
 	const [hasMore, setHasMore] = useState(true);
 	const [detail, setDetail] = useState({});
 	const [myProducts, setMyProducts] = useState([]);
+	const [brands, setBrands] = useState([]);
+	const [colors, setColors] = useState([]);
+	const [usingStatus, setUsingStatus] = useState([]);
 
 	useEffect(() => {
 		const getCategories = async () => {
@@ -98,6 +101,39 @@ export const ProductsProvider = ({ children }) => {
 		}
 	};
 
+	const getBrands = async () => {
+		const response = await getAllBrands();
+		console.log("getAllBrands response", response);
+		if(response.status === 200){
+			setBrands(response.data);
+		}
+	};
+
+	const getColors = async () => {
+		const response = await getAllColors();
+		console.log("getAllColors response", response);
+		if(response.status === 200){
+			setColors(response.data);
+		}
+	};
+
+	const getUsingStatus = async () => {
+		const response = await getAllUsingStatus();
+		console.log("getAllUsingStatus response", response);
+		if(response.status === 200){
+			setUsingStatus(response.data);
+		}
+	};
+
+	const handleUploadProduct = async (formData) => {
+		const response = await uploadProduct(formData);
+		console.log("uploadProduct response", response);
+		if(response.status === 200){
+			return true;
+		}
+		return false;
+	};
+	
 
 
 
@@ -113,7 +149,14 @@ export const ProductsProvider = ({ children }) => {
 		getProduct,
 		detail,
 		handleGetMyProducts,
-		myProducts
+		myProducts,
+		brands,
+		getBrands,
+		colors,
+		getColors,
+		usingStatus,
+		getUsingStatus,
+		handleUploadProduct
 	};
 
 	return <ProductsContext.Provider value={values}>{children}</ProductsContext.Provider>;

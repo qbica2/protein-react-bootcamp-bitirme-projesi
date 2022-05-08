@@ -11,4 +11,7 @@ export const requests = {
 	products: "/products",
 	count: "/products/count",
 	offers: "/offers",
+	brands: "/brands",
+	color: "/colors",
+	status:"/using-statuses"
 };

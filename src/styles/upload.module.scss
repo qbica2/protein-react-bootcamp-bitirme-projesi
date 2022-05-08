@@ -11,6 +11,9 @@
 		height: 812px;
 		background-color: #fff;
 		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		form{
 			margin: 30px;
 			display: flex;
@@ -54,6 +57,7 @@
 					color: #99A0A7;
 					font-size: 16px;
 					line-height: 22px;
+					cursor: pointer;
 					option{
 						color: #3E3E3E;
 						margin: 15px;
@@ -190,6 +194,7 @@
 			}
 			.right{
 				padding-left: 30px;
+				width: 635px;
 				.title{
 					color: #525252;
 					font-size: 25px;
@@ -250,7 +255,27 @@
 						border-radius: 50%;
 					}
 				}
+				
 			}
 		}
+		button{
+			margin-right: 30px;
+			width: 315px;
+			height: 45px;
+			background-color: #4B9CE2 ;
+			border-radius: 8px;
+			border: none;
+			align-self: flex-end;
+			cursor: pointer;
+		}
 	}
+}
+.error{
+	color: #F77474;
+	font-size: 12px;
+	line-height: 16px;
+}
+.errors{
+	background: #FFF2F2 !important;
+	border: 1px solid #F77474 !important;
 }
