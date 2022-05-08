@@ -45,5 +45,22 @@
 }
 
 @media screen and (max-width: 1500px) {
+	.container{
+		margin: 0 20px;
+		width: 95%;
+		justify-content: center;
+		align-items: center;
+		.categories{
+			width: 100%;
+			
+		}
+		.sliderContainer{
+			overflow: hidden;
+			overflow-x: scroll;
+			&::-webkit-scrollbar{
+				display: none;
+			}
 
+		}
+	}
 }

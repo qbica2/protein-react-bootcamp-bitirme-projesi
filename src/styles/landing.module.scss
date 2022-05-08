@@ -63,7 +63,19 @@
 		.container{
 			width: 100%;
 			.banner{
-
+				margin: 20px auto;
+				width: 98%;
+				
+			}
+		}
+	}
+}
+@media screen and (max-width: 750px) {
+	.landing{
+		.container{
+			.banner{
+				width: 355px;
+				height: 100px;
 			}
 		}
 	}

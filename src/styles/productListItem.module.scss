@@ -61,3 +61,18 @@
 		text-align:left;
 	}
 }
+
+@media screen and (max-width: 650px) {
+	.container{
+		margin-top: 10px;
+		width: 173px;
+		height: 266px;
+		.image{
+			width: 161px;
+			height: 184px;
+		}
+		.info{
+			flex-direction: column;
+		}
+	}
+}

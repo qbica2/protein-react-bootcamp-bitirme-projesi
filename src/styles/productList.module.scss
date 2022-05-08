@@ -6,3 +6,38 @@
 	justify-content: space-between;
 	align-items: center;
 }
+
+@media screen and (max-width: 1540px) {
+	.productList{
+		width: 1300px;
+		margin-right:auto;
+		margin-left:auto;
+	}
+}
+
+@media screen and (max-width: 1350px) {
+	.productList{
+		width: 1100px;
+		gap: 10px;
+	}
+}
+
+@media screen and (max-width: 1150px) {
+	.productList{
+		width: 750px;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.productList{
+		justify-content: center;
+		width: 600px;
+	}
+}
+
+@media screen and (max-width: 630px) {
+	.productList{
+		width: 370px;
+	}
+}
+
