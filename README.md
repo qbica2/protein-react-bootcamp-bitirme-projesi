@@ -2,7 +2,7 @@
 
 Bu proje bir ikinci el alışveriş uygulamasının ön yüzünü içermektedir. React.js ile yazılmıştır.
 
-[Demo]() canlıya alınca ekleyeceğim
+[Demo](https://ikinci-el-project-qbica.vercel.app/)
 
 Projeyi çalıştırığımızda karşımıza ürünleri listelediğimiz ana sayfamız geliyor.
 
