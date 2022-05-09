@@ -97,3 +97,29 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1500px) {
+	.container{
+		width: 95%;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.container{
+		width: 335px;
+		height: 134px;
+		gap:0;
+		.left{
+			.info{
+				margin-top: 10px;
+				justify-content: flex-start;
+				gap: 0px;
+			}
+		}
+		.right{
+			position: relative;
+			left: -200px;
+			align-self: flex-end;
+		}
+	}
+}

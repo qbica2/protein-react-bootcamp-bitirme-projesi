@@ -62,3 +62,31 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1500px) {
+	.account{
+		header{
+			width: 90%;
+		}
+		.offers{
+			width: 90%;
+		}
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.account{
+		height: 100%;
+		header{
+			width: 355px;
+		}
+		.offers{
+			width: 355px;
+			height: 100%;
+			.offerList{
+				gap: 10px;
+				
+			}
+		}
+	}
+}	
