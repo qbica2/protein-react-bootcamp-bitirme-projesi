@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../constants/Logo";
+import Logo from "./Logo";
 import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
 import style from "../styles/navigation.module.scss";
