@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import style from "../styles/detail.module.scss";
 import Navigation from "../constants/Navigation";
-
+import AuthContext from "../contexts/AuthContext";
 import ProductsContext from "../contexts/ProductsContext";
 import OfferContext from "../contexts/OfferContext";
 import BuyModalContext from "../contexts/BuyModalContext";
@@ -12,15 +13,23 @@ import OfferModal from "../components/OfferModal";
 
 function Detail() {
 
+	const { auth } = useContext(AuthContext);
 	const { detail } = useContext(ProductsContext);
 	const { submittedOffers,cancelOffer } = useContext(OfferContext);
 	const { isBuyModalOpen, handleBuyModalOpen, isBuy, setIsBuy } = useContext(BuyModalContext);
 
+	const navigate = useNavigate();
 	const photoBaseUrl = "https://bootcamp.akbolat.net/";
 
 	const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [offer, setOffer] = useState({});
+
+	useEffect(() => {
+		if(!auth.isAuthenticated) {
+			navigate("/login");
+		}	
+	},[]);
 	
 	useEffect(() => {
 		if(detail.isSold){
@@ -48,10 +57,6 @@ function Detail() {
 		});
 	};
 
-	// const handleOpenBuyModal = () => {
-	// 	handleBuyModalOpen();
-	// 	setProductId(detail.id);
-	// };
 
 	return (
 		<div className={style.detail}>
