@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Protein İkinci El Project React.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bu proje bir ikinci el alışveriş uygulamasının ön yüzünü içermektedir. React.js ile yazılmıştır.
 
-## Available Scripts
+[Demo]() canlıya alınca ekleyeceğim
 
-In the project directory, you can run:
+Projeyi çalıştırığımızda karşımıza ürünleri listelediğimiz ana sayfamız geliyor.
 
-### `npm start`
+<img src="https://media.giphy.com/media/MHMSdZ4dTuY00wwuCk/giphy.gif" width="300" height="250" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Her 15. ürün ekrana geldiği anda API tekrar istek atılıp, yeni ürünler ekrana geliyor.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img src="https://media.giphy.com/media/YuDU96NPyBbbaBWUiK/giphy.gif" width="300" height="250" />
 
-### `npm test`
+Ürünler hakkında bilgi almak gibi çeşitli işlemler için öncelikle giriş yapılması gerekiyor. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="https://media.giphy.com/media/XIRoW6wfv2dBLI3pG1/giphy.gif" width="300" height="250" />
 
-### `npm run build`
+Kayıt ve giriş formlarında bazı doğrulamalara uyulması gerekiyor. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://media.giphy.com/media/1Mj1lSZHHRW1uzZKCI/giphy.gif" width="300" height="250" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ürün detay sayfasından baktığınız ürüne teklif verebilir ya da direk satın alabilirsiniz. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="https://media.giphy.com/media/g4GzDUKK6rj9WJel42/giphy.gif" width="300" height="250" />
 
-### `npm run eject`
+<img src="https://media.giphy.com/media/7DlOicLM6InTZlYCye/giphy.gif" width="300" height="250" />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Hesabım sayfasından verdiğiniz ya da aldığınız tekliflere ulaşabilirsiniz. 
+Verdiğiniz tekliflerden kabul edilenleri hemen satın alabilirsiniz. Size gelen bir teklifi kabul ve ya red edebilirsiniz.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="https://media.giphy.com/media/dR9SHgJOQIzJnkNOVH/giphy.gif" width="300" height="250" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Ürün ekleme sayfasında yine çeşitli doğrulamara uyarak ürün ekleyebilirsiniz. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img src="https://media.giphy.com/media/lK9wAnRZB1Rd012ZUw/giphy.gif" width="300" height="250" />
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="https://media.giphy.com/media/mikiLDnbtsaFp2mbNR/giphy.gif" width="300" height="250" />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Projede Kullandığım Teknolojiler
+ - axios
+ - formik
+ - react-router-dom
+ - sass
+ - yup
+ - react-toastify
+ - react-images-uploading
 
-### Code Splitting
+## Kurulum ve Çalıştırma
+```
+git clone https://github.com/qbica2/protein-react-bootcamp-bitirme-projesi
+npm install
+npm start
+http://localhost:3000/	
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## İletişim
+ 
+ - [Github](https://github.com/qbica2)
+ - [Linkedin](https://www.linkedin.com/in/kubilay-akdemir/)
+ - [kubidik27@gmail.com](mailto:kubidik27@gmail.com)
