@@ -2,7 +2,7 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import PropTypes from "prop-types";
 
-function logo({ width, height }) {
+function Logo({ width, height }) {
 	const navigate = useNavigate();
 	return (
 		<svg width={width} height={height} viewBox="0 0 225 74" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={()=>navigate("/")}>
@@ -37,9 +37,9 @@ function logo({ width, height }) {
 	);
 }
 
-logo.propTypes = {
+Logo.propTypes = {
 	width: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 };
 
-export default logo;
+export default Logo;
