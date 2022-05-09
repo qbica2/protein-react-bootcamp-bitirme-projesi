@@ -39,18 +39,20 @@ function ProductListItem( {brand, color, image, price, isLast, id}) {
 			
 	}, [imgRef,isLast]);
 
-	const handleGetDetail = () => {
+	const handleGetDetail =async (id) => {
 		if(!auth.isAuthenticated){
 			toast.error("Lütfen giriş yapınız");
 			return;
 		}
-		getProduct(id);
-		navigate(`/product/${id}`);
+		const isDone = await getProduct(id);
+		if(isDone){
+			navigate(`/product/${id}`);
+		}
 	};
 
 
 	return (
-		<div className={style.container} onClick={handleGetDetail} >
+		<div className={style.container} onClick={()=>handleGetDetail(id)} >
 			<div className={style.image} ref={imgRef}>
 				<img src={image} alt="resim"/>
 			</div>

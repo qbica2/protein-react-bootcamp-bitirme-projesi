@@ -1,25 +1,26 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext } from "react";
 
-import { slide } from "../utils/slide";
 import ProductsContext from "../contexts/ProductsContext";
 import style from "../styles/categories.module.scss";
 
 function Categories() {
 
 	const { categories, selectedCategory, setSelectedCategory, setSearchParams, setPage, setProducts } = useContext(ProductsContext);
-	const sliderRef = useRef();
 
-	useEffect(() => {
+	// Teslim tarihinden sonra, deploymenttaki hataları düzeltmek adına yaptığım bu değişikleri yorum satırında bırakıyorum.
+	// const sliderRef = useRef();
 
-		setTimeout(() => {
-			slide(selectedCategory, sliderRef);
-		}, 4000);
+	// useEffect(() => {
 
-	},[]);
+	// 	setTimeout(() => {
+	// 		slide(selectedCategory, sliderRef);
+	// 	}, 4000);
 
-	const handleSelectCategory = ( category, ref ) => {
+	// },[selectedCategory]);
+
+	const handleSelectCategory = ( category ) => {
 		setProducts([]);
-		slide(category,ref);	
+		// slide(category,ref);	
 		setSelectedCategory(category);
 		setSearchParams({category:category});
 		setPage(0);
@@ -29,23 +30,23 @@ function Categories() {
 		<div className={style.container}>
 			<div className={style.categories}>
 				<div className={style.category}>
-					<span onClick={(e)=>handleSelectCategory(Number(e.target.id),sliderRef)} id={0} 
+					<span onClick={(e)=>handleSelectCategory(Number(e.target.id))} id={0} 
 						className={`${selectedCategory==0 ? style.selected: ""}`}>Hepsi</span>
 				</div>
 				{
 					categories.slice(0,13).map((category) => (
 						<div key={category.id} className={style.category} id={category.id} >
-							<span onClick={()=>handleSelectCategory(category.id,sliderRef)} className={`${category.id===selectedCategory? style.selected: ""}`}>{category.name}</span>
+							<span onClick={()=>handleSelectCategory(category.id)} className={`${category.id===selectedCategory? style.selected: ""}`}>{category.name}</span>
 						</div>
 					))
 				}
 				<div className={style.category}>
-					<span onClick={(e)=>handleSelectCategory(Number(e.target.id),sliderRef)} id={14} 
+					<span onClick={(e)=>handleSelectCategory(Number(e.target.id))} id={14} 
 						className={`${selectedCategory==14 ? style.selected: ""}`}>Diğer</span>
 				</div>
 			</div>
 			<div className={style.sliderContainer}>
-				<div ref={sliderRef} className={style.slider}></div>
+				{/* <div className={style.slider}></div> */}
 			</div>
 		</div>
 	);

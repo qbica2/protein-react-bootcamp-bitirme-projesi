@@ -95,8 +95,9 @@ export const ProductsProvider = ({ children }) => {
 		console.log("getProductById response", response);
 		if(response.status === 200){
 			setDetail(response.data);
+			return true;
 		}
-		
+		return false;
 	};
 
 	const handleGetMyProducts = async (id) => {
