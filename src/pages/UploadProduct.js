@@ -1,15 +1,15 @@
 import React, {useState, useContext , useEffect} from "react";
-import ImageUploading from "react-images-uploading";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import ProductsContext from "../contexts/ProductsContext";
+import ImageUploading from "react-images-uploading";
+import { uploadValidations } from "../constants/validation";
 import AuthContext from "../contexts/AuthContext";
-import style from "../styles/upload.module.scss";
+import ProductsContext from "../contexts/ProductsContext";
 import Navigation from "../constants/Navigation";
 import UploadIcon from "../constants/icons/UploadIcon";
 import CloseIcon from "../constants/icons/CloseIcon";
-import { uploadValidations } from "../constants/validation";
+import style from "../styles/upload.module.scss";
 
 function AddProduct() {
 	

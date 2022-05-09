@@ -1,7 +1,7 @@
 import React, { useContext} from "react";
 import PropTypes from "prop-types";
-import style from "../styles/offer.module.scss";
 import BuyModalContext from "../contexts/BuyModalContext";
+import style from "../styles/offer.module.scss";
 
 
 function Offer({ image, title, offeredPrice, status, productId }) {

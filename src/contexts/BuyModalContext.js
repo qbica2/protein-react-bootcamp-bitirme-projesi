@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState} from "react";
-import { buyProductById } from "../services/productsService";
 import { toast } from "react-toastify";
+import { buyProductById } from "../services/productsService";
 
 const BuyModalContext = createContext();
 

@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useEffect } from "react";
 
-import style from "../styles/categories.module.scss";
-import ProductsContext from "../contexts/ProductsContext";
 import { slide } from "../utils/slide";
+import ProductsContext from "../contexts/ProductsContext";
+import style from "../styles/categories.module.scss";
 
 function Categories() {
 

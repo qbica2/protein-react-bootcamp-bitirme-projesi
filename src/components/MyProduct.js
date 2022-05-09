@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
+import ProductsContext from "../contexts/ProductsContext";
 import style from "../styles/myproduct.module.scss";
 
-import ProductsContext from "../contexts/ProductsContext";
+
 
 function MyProduct({ price, image , title, status, productId, authId , offerId }) {
 

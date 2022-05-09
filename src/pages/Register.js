@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import AuthContext from "../contexts/AuthContext";
 import LoginRegisterLayout from "../components/LoginRegisterLayout";
 import Validations from "../constants/validation";
-import AuthContext from "../contexts/AuthContext";
 import style from "../styles/loginRegisterLayout.module.scss";
 
 function Register() {

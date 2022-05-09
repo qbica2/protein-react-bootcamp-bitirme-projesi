@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import style from "../styles/buymodal.module.scss";
 import BuyModalContext from "../contexts/BuyModalContext";
+import style from "../styles/buymodal.module.scss";
 
 function BuyModal() {
 	const { handleBuySomething, handleBuyModalClose } = useContext(BuyModalContext);

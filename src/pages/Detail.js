@@ -1,21 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-import style from "../styles/detail.module.scss";
-import Navigation from "../constants/Navigation";
 import AuthContext from "../contexts/AuthContext";
 import ProductsContext from "../contexts/ProductsContext";
 import OfferContext from "../contexts/OfferContext";
 import BuyModalContext from "../contexts/BuyModalContext";
 import BuyModal from "../components/BuyModal";
 import OfferModal from "../components/OfferModal";
+import Navigation from "../constants/Navigation";
+import style from "../styles/detail.module.scss";
 
 function Detail() {
 
 	const { auth } = useContext(AuthContext);
 	const { detail } = useContext(ProductsContext);
-	const { submittedOffers,cancelOffer } = useContext(OfferContext);
+	const { submittedOffers, cancelOffer } = useContext(OfferContext);
 	const { isBuyModalOpen, handleBuyModalOpen, isBuy, setIsBuy } = useContext(BuyModalContext);
 
 	const navigate = useNavigate();

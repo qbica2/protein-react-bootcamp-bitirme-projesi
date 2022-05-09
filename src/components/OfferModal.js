@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import style from "../styles/offermodal.module.scss";
+import PropTypes from "prop-types";
+import { offerValidations } from "../constants/validation";
+import AuthContext from "../contexts/AuthContext";
+import OfferContext from "../contexts/OfferContext";
 import CloseIcon from "../constants/icons/CloseIcon";
 import CheckedIcon from "../constants/icons/CheckedIcon";
 import UncheckedIcon from "../constants/icons/UncheckedIcon";
-import { offerValidations } from "../constants/validation";
-import OfferContext from "../contexts/OfferContext";
-import AuthContext from "../contexts/AuthContext";
+import style from "../styles/offermodal.module.scss";
 
 function OfferModal({ closeModal, src, product, price, setPrice}) {
 

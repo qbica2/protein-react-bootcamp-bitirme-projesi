@@ -1,6 +1,5 @@
 import * as yup from "yup";
 
-
 const Validations = yup.object().shape({
 	email: yup.string().email("Geçerli bir email giriniz").required("Email alanı boş bırakılamaz"),
 	password: yup.string()

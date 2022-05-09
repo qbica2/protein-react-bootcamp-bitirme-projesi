@@ -1,11 +1,11 @@
 import React, { useRef, useEffect ,useContext}from "react";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
-import style from "../styles/productListItem.module.scss";
-import ProductsContext from "../contexts/ProductsContext";
 import AuthContext from "../contexts/AuthContext";
+import ProductsContext from "../contexts/ProductsContext";
+import style from "../styles/productListItem.module.scss";
 
 function ProductListItem( {brand, color, image, price, isLast, id}) {
 	

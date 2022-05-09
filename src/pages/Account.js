@@ -5,12 +5,12 @@ import AuthContext from "../contexts/AuthContext";
 import OfferContext from "../contexts/OfferContext";
 import BuyModalContext from "../contexts/BuyModalContext";
 import ProductsContext from "../contexts/ProductsContext";
-import style from "../styles/account.module.scss";
-import Navigation from "../constants/Navigation";
-import AccountIcon from "../constants/icons/AccountIcon";
 import Offer from "../components/Offer";
 import MyProduct from "../components/MyProduct";
 import BuyModal from "../components/BuyModal";
+import Navigation from "../constants/Navigation";
+import AccountIcon from "../constants/icons/AccountIcon";
+import style from "../styles/account.module.scss";
 
 function Account() {
 

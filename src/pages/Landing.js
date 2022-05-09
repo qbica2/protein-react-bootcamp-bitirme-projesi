@@ -1,16 +1,13 @@
 import React , { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
-import style from "../styles/landing.module.scss";
+import AuthContext from "../contexts/AuthContext";
+import ProductList from "../components/ProductList";
+import Categories from "../components/Categories";
 import Logo from "../constants/Logo";
 import AddIcon from "../constants/icons/AddIcon";
 import AvatarIcon from "../constants/icons/AvatarIcon";
-
-import Categories from "../components/Categories";
-import ProductList from "../components/ProductList";
-
-import AuthContext from "../contexts/AuthContext";
+import style from "../styles/landing.module.scss";
 
 
 

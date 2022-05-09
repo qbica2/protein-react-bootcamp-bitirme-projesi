@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState } from "react";
-
 import { submitOffer, deleteOffer, getOffers } from "../services/offerService";
 
 const OfferContext = createContext();

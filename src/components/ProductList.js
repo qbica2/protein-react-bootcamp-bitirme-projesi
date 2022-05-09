@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import style from "../styles/productList.module.scss";
 import ProductsContext from "../contexts/ProductsContext";
 import ProductListItem from "./ProductListItem";
+import style from "../styles/productList.module.scss";
 
 function ProductList() {
 
