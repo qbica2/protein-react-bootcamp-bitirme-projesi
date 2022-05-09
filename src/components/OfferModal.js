@@ -110,19 +110,19 @@ function OfferModal({ closeModal, src, product, price, setPrice}) {
 				</div>
 				<form>
 					{/* maplediğim zaman re render limit sorununa takılıyordu */}
-					<div className={style.option} onClick={()=>handleOfferClick({type: 20})}>
+					<div className={`${style.option}  ${checked20? style.active : "" }`} onClick={()=>handleOfferClick({type: 20})}>
 						{
 							checked20 ? <CheckedIcon /> : <UncheckedIcon />
 						}
 						%20'si Kadar Teklif Ver
 					</div>
-					<div className={style.option} onClick={()=>handleOfferClick({type: 30})}>
+					<div className={`${style.option}  ${checked30? style.active : "" }`} onClick={()=>handleOfferClick({type: 30})}>
 						{
 							checked30 ? <CheckedIcon /> : <UncheckedIcon />
 						}
 						%30'si Kadar Teklif Ver
 					</div>
-					<div className={style.option} onClick={()=>handleOfferClick({type: 40})}>
+					<div className={`${style.option}  ${checked40? style.active : "" }`} onClick={()=>handleOfferClick({type: 40})}>
 						{
 							checked40 ? <CheckedIcon /> : <UncheckedIcon />
 						}
